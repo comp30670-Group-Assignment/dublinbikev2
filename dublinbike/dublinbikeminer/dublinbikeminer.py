@@ -36,13 +36,8 @@ def main():
     
     #conex.commit()
     
-    sqlQuery2 = "FROM dublinBikes SELECT *"
     
-    output = cursor.execute(sqlQuery2)
     
-    return output
-    
-    """
     while True:
         
         link = "https://api.jcdecaux.com/vls/v1/stations?contract=Dublin&&apiKey=4dc48c410fefd7a42d52cdc4a9c6eb7ce0f67ae0"
@@ -81,7 +76,7 @@ def main():
         return False
     
         time.sleep(300)
-    """
+
         
     conex.close()
     print("connection closed")

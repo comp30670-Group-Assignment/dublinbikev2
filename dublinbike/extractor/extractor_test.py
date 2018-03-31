@@ -6,6 +6,10 @@ print(new_conex.station_names)
 
 new_conex.getLatAndLong()
 
+fh = open("stations.json", "w")
+
+fh.write(new_conex.json)
+
 print(new_conex.json)
 
 #new_conex.avg_available_bike()
