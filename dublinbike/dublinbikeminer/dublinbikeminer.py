@@ -14,7 +14,12 @@ def main():
     cursor = conex.cursor()
     
     
+    data_set_id = 10
+    
+    
     while True:
+        
+        data_id = 0
 
         link = "https://api.jcdecaux.com/vls/v1/stations?contract=Dublin&&apiKey=4dc48c410fefd7a42d52cdc4a9c6eb7ce0f67ae0"
         
@@ -26,7 +31,7 @@ def main():
             try:
                 
                 for i in jTxt:
-                
+                    
                     number = i['number']
                     name = i['name']
                     address = i['address']
@@ -39,7 +44,7 @@ def main():
                     last_update = i['last_update']
                     
                     
-                    sqlQuery = "INSERT INTO data(Number, Name, Address, Position_Lat, Position_Lng, Status, Bike_Stands, Available_Bike_Stands, Available_bikes, Last_Update) \
+                    sqlQuery = "INSERT INTO data(data_set_id, data_set,Number, Name, Address, Position_Lat, Position_Lng, Status, Bike_Stands, Available_Bike_Stands, Available_bikes, Last_Update) \
                     VALUES('%d', '%s', '%s', '%f', '%f', '%s', '%d', '%d', '%d', '%d')" % \
                     (number, name, address, position_lat, position_lng, status, bike_stands, available_bike_stands, available_bikes, last_update)
                     
@@ -58,7 +63,7 @@ def main():
             pass
         
         
-    
+        data_set_id += 1
         time.sleep(300)
 
         
