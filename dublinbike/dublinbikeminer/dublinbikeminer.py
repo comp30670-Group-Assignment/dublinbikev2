@@ -4,11 +4,12 @@ import time
 
 # Import MySQl
 from mysql.connector import (connection, cursor)
+from gevent.libev.corecext import stat
 
 def main():
     
     # Connection to local database
-    conex = connection.MySQLConnection(user='hugh', password='password', host='0.0.0.0', database='dublinbikes')
+    conex = connection.MySQLConnection(user='root', password='Rugby_777', host='0.0.0.0', database='dublinbikes')
     # MySQL object
     cursor = conex.cursor()
     
@@ -23,29 +24,32 @@ def main():
         if r.status_code == 200:
             
             try:
-        
-                number = jTxt['number']
-                name = jTxt['name']
-                address = jTxt['address']
-                position_lat = jTxt['position']['lat']
-                position_lng = jTxt['position']['lng']
-                bike_stands = jTxt['bike_stands']
-                status = jTxt['status']
-                available_bike_stands = jTxt['available_bike_stands']
-                available_bikes = jTxt['available_bikes']
-                last_update = jTxt['last_update']
                 
+                for i in jTxt:
                 
-                sqlQuery = "INSERT INTO dublinBikes(Number, Name, Address, Position_Lat, Position_Lng, Status, Bike_Stands, Available_Bike_Stands, Available_bikes, Last_Update) \
-                VALUES('%d', '%s', '%s', '%f', '%f', '%s', '%d', '%d', '%d', '%d')" % \
-                (number, name, address, position_lat, position_lng, status, bike_stands, available_bike_stands, available_bikes, last_update)
-                
-                cursor.execute(sqlQuery)
-                
-                cursor.commit()
+                    number = i['number']
+                    name = i['name']
+                    address = i['address']
+                    position_lat = i['position']['lat']
+                    position_lng = i['position']['lng']
+                    bike_stands = i['bike_stands']
+                    status = i['status']
+                    available_bike_stands = i['available_bike_stands']
+                    available_bikes = i['available_bikes']
+                    last_update = i['last_update']
+                    
+                    
+                    sqlQuery = "INSERT INTO data(Number, Name, Address, Position_Lat, Position_Lng, Status, Bike_Stands, Available_Bike_Stands, Available_bikes, Last_Update) \
+                    VALUES('%d', '%s', '%s', '%f', '%f', '%s', '%d', '%d', '%d', '%d')" % \
+                    (number, name, address, position_lat, position_lng, status, bike_stands, available_bike_stands, available_bikes, last_update)
+                    
+                    cursor.execute(sqlQuery)
+                    
+                    conex.commit()
         
                 pass
             except:
+                print("except")
                 pass
             
         else:
