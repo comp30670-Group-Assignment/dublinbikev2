@@ -18,13 +18,14 @@ while True:
     avg_bike_json = json.dumps(avg_bike)
     avg_stand_json = json.dumps(avg_stand)
     
+    print("writing")
     fhb.write(avg_bike_json)
     
     fhb.write(avg_stand_json)
     
     fhb.close
     fhs.close
-    
+    print("sleeping")
     time.sleep(86400)
     
     
