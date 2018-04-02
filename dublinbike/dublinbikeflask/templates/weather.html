@@ -4,8 +4,34 @@
 
 <div class="jumbotron text-center">
 <h1>Weather</h1>
-    <h2>Long-range forecast for Dublin City</h2>
-<p class="lead">Lorem tab</p>
-</div>
-
+    <h3>Long-range forecast for Dublin City</h3>
+    
+    <h4>Today</h4>
+    <div id="today"></div><br>
+    
+    <h4>Tomorrow</h4>
+    <div id="tomorrow"></div>
+    
+    <script> 
+        
+function showWeather() {
+    document.getElementById("today").innerHTML = "Sunny with a chance of showers.";
+}    
+function showWeather2() {
+    document.getElementById("tomorrow").innerHTML = "Cloudy with a chance of meatballs.";
+} 
+        showWeather()
+        showWeather2()
+        
+    </script>
+    
+        
+<!--//var day = 4;
+//var month = "April";    
+//document.getElementById("today").innerHTML = "Today " + day + " " + month + "<br> Sunny with a chance of rain";
+//document.getElementById("tomorrow").innerHTML = "Tomorrow " + (day+1) + " " + month + "<br> Cloudy with a chance of meatballs";  --> 
+        
+    
+    
+    
 {% endblock%}
