@@ -1,7 +1,7 @@
 import requests
 import json
 import time
-import datetime
+#import datetime
 import mysql.connector
 from numbers import Number
 import re
