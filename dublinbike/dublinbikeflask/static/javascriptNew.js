@@ -9,24 +9,20 @@ function mapInit() {
     	if (this.readyState == 4 && this.status == 200) {
       		locations = JSON.parse(this.responseText);
       			
-      		var index = [];
-      		for(var xID in locations) {
-      			
-      			index.push(xID);
-      				
+      	// Create empty array 'index'
+	var index = [];
+	// Add (i.e. 'push') the next xID item to the array
+      	for(var xID in locations) {
+      		index.push(xID);		
       		}
       			
-      		for(i = 0; i < index.length; i++) {
+      	// Fill map up with markers based on json data
+	for(i = 0; i < index.length; i++) {
       			
-				var position = new google.maps.LatLng(locations[index[i]].latitude, locations[index[i]].longitude);
-        		marker = new google.maps.Marker({
-            		position: position,
-            		map: map
-        		});
-        		
-     		}
-    	}
-  	};
+	var position = new google.maps.LatLng(locations[index[i]].latitude, locations[index[i]].longitude);
+        marker = new google.maps.Marker({position: position, map: map});}
+		
+	}};
   	xhttp.open("GET", "static/stations.json", true);
   	xhttp.send();
 }
