@@ -1,0 +1,41 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+
+<div class="jumbotron text-center">
+<h1>Weather</h1>
+    <h3>Long-range forecast for Dublin City</h3>
+    <br>
+
+<div style="width: 100%; overflow: auto;">
+<div id="today"style="width: 200px; float: left;"></div>
+<div id="tomorrow" style="width: 200px; margin-left: 200px;"></div>
+<div id="day3" style="width: 200px; margin-left: 400px;">Day 3</div>
+<div id="day4" style="width: 200px; margin-left: 600px;">Day 4</div>
+<div id="day5" style="width: 200px; margin-left: 800px;">Day 5</div>
+</div>
+
+    
+    <script> 
+        
+function showWeather() {
+    document.getElementById("today").innerHTML = "Sunny with a chance of showers.";
+}    
+function showWeather2() {
+    document.getElementById("tomorrow").innerHTML = "Cloudy with a chance of meatballs.";
+} 
+        showWeather()
+        showWeather2()
+        
+    </script>
+    
+        
+<!--//var day = 4;
+//var month = "April";    
+//document.getElementById("today").innerHTML = "Today " + day + " " + month + "<br> Sunny with a chance of rain";
+//document.getElementById("tomorrow").innerHTML = "Tomorrow " + (day+1) + " " + month + "<br> Cloudy with a chance of meatballs";  --> 
+        
+    
+    
+    
+{% endblock%}

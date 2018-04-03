@@ -11,9 +11,9 @@ def index():
 # Normally we return a template, not a string.
 	return render_template('home.html')
 
-@app.route('/about')
-def about():
-	return render_template('about.html')
+@app.route('/weather')
+def weather():
+	return render_template('weather.html')
 
 @app.route('/stations')
 def stations():
