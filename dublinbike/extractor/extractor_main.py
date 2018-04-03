@@ -6,8 +6,8 @@ new_conex = Extractor()
 
 while True:
     
-    fhb = open("/home/hugh/git/dublinbike/dublinbike/dublinbikeflask/static/av_bike.json", "w")
-    fhs = open("/home/hugh/git/dublinbike/dublinbike/dublinbikeflask/static/av_stand.json","w")
+    fhb = open("/home/hugh/git/dublinbikev2/dublinbike/dublinbikeflask/static/av_bike.json", "w")
+    fhs = open("/home/hugh/git/dublinbikev2/dublinbike/dublinbikeflask/static/av_stand.json","w")
     
     new_conex.avg_available_bike()
     new_conex.avg_available_stand()
@@ -22,7 +22,6 @@ while True:
     fhb.write(avg_bike_json)
     
     fhb.write(avg_stand_json)
-    
     fhb.close
     fhs.close
     print("sleeping")

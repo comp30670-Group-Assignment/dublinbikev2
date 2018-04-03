@@ -14,6 +14,7 @@ class Extractor:
     avg_available_bike_dict = {}
     lat_long = {}
     json = 0
+    station_names = ()
     
     def __init__(self):
         
@@ -49,13 +50,10 @@ class Extractor:
             self.avg_available_stand_dict[j[0]] = {}
             #for each station name 
             for i in range(0, 24):
-                total_tuple = self.selectHour(i, "available_bike_stands")
+                avg = self.selectHour(i,j[0], "available_bike_stands")
                 #returns tuple with all values relevant to the selected time period
-                total = 0
-                for x in total_tuple:
-                    total += int(x[0])
-                avg = total / len(total_tuple)
-                self.avg_available_stand_dict[j[0]][i] = avg
+                
+                self.avg_available_stand_dict[j[0]][i] = float(avg[0][0])
                 
             
             
@@ -67,15 +65,13 @@ class Extractor:
         
             for i in range(0, 24):
                 
-                total_tuple = self.selectHour(i, "available_bikes")
+                avg = self.selectHour(i, j[0], "available_bikes")
                 
                 #returns tuple with all values relevant to the selected time period
-                total = 0
-                for x in total_tuple:
-                    total += int(x[0])
-                avg = total / len(total_tuple)
         
-                self.avg_available_bike_dict[j[0]][i] = avg
+                self.avg_available_bike_dict[j[0]][i] = float(avg[0][0])
+                
+                #print(float(avg[0][0]))
                 
     def selectStation(self, x, h):
         
@@ -103,10 +99,26 @@ class Extractor:
         self.json = json.dumps(self.lat_long)
         
             
-    def selectHour(self, h, x):
+    def selectHour(self, h, s, x):
         
         #query needs completion
-        query = 'SELECT %s FROM dublinbikes.data WHERE HOUR(timestamp) = %d' % (x , h)
+        
+        query = 'SELECT AVG(%s) FROM data WHERE name = "%s" and HOUR(timestamp) = %d;' % (x, s, h)
+        
+        #print(query)
+        
+        self.cursor.execute(query)
+        
+        output = self.cursor.fetchall()
+        
+        return output
+       
+    def test(self):
+        
+        
+        query = 'SELECT AVG(available_bikes) FROM data WHERE name = "SMITHFIELD NORTH" and HOUR(timestamp) = 8;'
+        
+        print(query)
         
         self.cursor.execute(query)
         
