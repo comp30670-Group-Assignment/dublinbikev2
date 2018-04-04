@@ -8,7 +8,7 @@ new_extractor = Extractor()
 
 def getDB():
 	
-	conex = mysql.connector.connect(user='root', password='Rugby_777', database='dublinbikes', host='0.0.0.0')
+	conex = mysql.connector.connect(user='root', password='******', database='dublinbikes', host='0.0.0.0')
 	
 	return conex
 
