@@ -32,8 +32,10 @@ def main():
 	The data is inserted into a remote database."""
 
 	# MySQL connection
-	conex = mysql.connector.connect(user='comp30670', password='UCD2018COMP30670', database='dublinbikes', host='dublinbikes-cluster.cluster-cuatqxpruzq4.us-west-2.rds.amazonaws.com', port=3306)
-
+	conex = mysql.connector.connect(user='root', password='Rugby_777', database='dublinbikes', host='0.0.0.0')
+	
+	cursor = conex.cursor()
+	
 	# JCDecaux API link
 	link = "https://api.jcdecaux.com/vls/v1/stations?contract=Dublin&&apiKey=4dc48c410fefd7a42d52cdc4a9c6eb7ce0f67ae0"
 
@@ -46,13 +48,13 @@ def main():
 	cursor.execute(dataset_query)
 
 	# Set ID value for each time a fresh set of JSON data is pulled from the API
-	dataSet = cursor.fetchall()[0][0]
+	dataSet = cursor.fetchall()[0][0] + 1
 
 	# Infinite loop
 	while True:
 
 		# MySQL object
-		cursor = conex.cursor()
+		
 
 		# Retrieve and load JSON data
 		r = requests.get(link)
@@ -61,46 +63,47 @@ def main():
 		# If the JSON call was successfuly
 		if r.status_code == 200:
 
-			try:
+			#try:
 
 				# For every row of JSON elements
-				count = 0
-				for row in jTxt:
+			count = 0
+			for row in jTxt:
+				
 
-					# Pass JSON elements through number and string validators
-					if isinstance(jTxt[count]['number'], Number) == True and isinstance(jTxt[count]['name'], str) == True and isinstance(jTxt[count]['address'], str) == True and isinstance(jTxt[count]['position']['lat'], Number) == True and isinstance(jTxt[count]['position']['lng'], Number) == True and isinstance(jTxt[count]['bike_stands'], Number) == True and isinstance(jTxt[count]['status'], str) == True and isinstance(jTxt[count]['available_bike_stands'], Number) == True and isinstance(jTxt[count]['available_bikes'], Number) == True and isinstance(jTxt[count]['last_update'], Number):		
+				# Pass JSON elements through number and string validators
+				if isinstance(jTxt[count]['number'], Number) == True and isinstance(jTxt[count]['name'], str) == True and isinstance(jTxt[count]['address'], str) == True and isinstance(jTxt[count]['position']['lat'], Number) == True and isinstance(jTxt[count]['position']['lng'], Number) == True and isinstance(jTxt[count]['bike_stands'], Number) == True and isinstance(jTxt[count]['status'], str) == True and isinstance(jTxt[count]['available_bike_stands'], Number) == True and isinstance(jTxt[count]['available_bikes'], Number) == True and isinstance(jTxt[count]['last_update'], Number):		
 
-						# Pass JSON elements through a regular expression check
-						if regex(str(jTxt[count]['number']), str(jTxt[count]['name']), str(jTxt[count]['address']), str(jTxt[count]['position']['lat']), str(jTxt[count]['position']['lng']), str(jTxt[count]['bike_stands']), str(jTxt[count]['status']), str(jTxt[count]['available_bike_stands']), str(jTxt[count]['available_bikes']), str(jTxt[count]['last_update'])) == True:
+					# Pass JSON elements through a regular expression check
+					if regex(str(jTxt[count]['number']), str(jTxt[count]['name']), str(jTxt[count]['address']), str(jTxt[count]['position']['lat']), str(jTxt[count]['position']['lng']), str(jTxt[count]['bike_stands']), str(jTxt[count]['status']), str(jTxt[count]['available_bike_stands']), str(jTxt[count]['available_bikes']), str(jTxt[count]['last_update'])) == True:
 
-							# MySQL arguments
-							args = (int(dataSet), int(count), int(jTxt[count]['number']), str(jTxt[count]['name']), str(jTxt[count]['address']), float(jTxt[count]['position']['lat']), float(jTxt[count]['position']['lng']), int(jTxt[count]['bike_stands']), str(jTxt[count]['status']), int(jTxt[count]['available_bike_stands']), int(jTxt[count]['available_bikes']), int(jTxt[count]['last_update']))
+						# MySQL arguments
+						args = (int(dataSet), int(count), int(jTxt[count]['number']), str(jTxt[count]['name']), str(jTxt[count]['address']), float(jTxt[count]['position']['lat']), float(jTxt[count]['position']['lng']), int(jTxt[count]['bike_stands']), str(jTxt[count]['status']), int(jTxt[count]['available_bike_stands']), int(jTxt[count]['available_bikes']), int(jTxt[count]['last_update']))
 
-							# Execute query
-							cursor.execute(sqlQuery, args)
+						# Execute query
+						cursor.execute(sqlQuery, args)
 
-						else:
-							# Error occured so continue FOR loop
-							continue
 					else:
-
 						# Error occured so continue FOR loop
 						continue
+				else:
 
-					# Increase counter variable for iterating over JSON data
-					count += 1
+					# Error occured so continue FOR loop
+					continue
 
-			except:
-				print("except")
+				# Increase counter variable for iterating over JSON data
+				count += 1
+
+			#except:
+				#print("except")
 				# Error occured so rollback
-				conex.rollback()
+				#conex.rollback()
 
-			finally:
+			#finally:
 
 				# Commit data to DB
-				conex.commit()
-				# Close MySQL object
-				cursor.close()
+			conex.commit()
+			# Close MySQL object
+			cursor.close()
 
 		# Increment data set counter
 		dataSet += 1
