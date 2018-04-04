@@ -1,6 +1,16 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, jsonify
 from data import Articles
-from extractor import *
+from extractor.extractorv1 import *
+import json
+from mysql.connector import (connection, cursor)
+
+new_extractor = Extractor()
+
+def getDB():
+	
+	conex = mysql.connector.connect(user='root', password='Rugby_777', database='dublinbikes', host='0.0.0.0')
+	
+	return conex
 
 app = Flask(__name__)
 
@@ -18,7 +28,16 @@ def weather():
 
 @app.route('/stations')
 def stations():
+	
 	return render_template('stations.html')
+
+def getStations():
+	
+	new_extractor.getLatAndLong()
+	
+	stations = new_extractor.lat_long
+	
+	return jsonify(stations=stations)
 
 @app.route('/full-map')
 def fullMap():
