@@ -1,12 +1,17 @@
 {% extends 'layout.html' %}
 
-    <link rel="stylesheet" href="css2.css">
-    
+{% block head %}
+
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     
     <script type=text/javascript>
   		$SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
+  		$.getJSON($SCRIPT_ROOT + '/_add_numbers', function(data) {
+        	console.log(data.result);
+      	});
 	</script>
+    
+{% endblock %}    
     
 {% block body %}
     
