@@ -1,5 +1,6 @@
 from flask import Flask, render_template
 from data import Articles
+from extractor import *
 
 app = Flask(__name__)
 
