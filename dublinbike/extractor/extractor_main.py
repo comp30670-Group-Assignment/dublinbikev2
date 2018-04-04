@@ -21,7 +21,7 @@ while True:
     print("writing")
     fhb.write(avg_bike_json)
     
-    fhb.write(avg_stand_json)
+    fhs.write(avg_stand_json)
     fhb.close
     fhs.close
     print("sleeping")

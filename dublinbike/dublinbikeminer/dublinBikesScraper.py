@@ -5,6 +5,7 @@ import time
 import mysql.connector
 from numbers import Number
 import re
+from h5py._hl import dataset
 
 def regex(input1, input2, input3, input4, input5, input6, input7, input8, input9, input10):
 
@@ -39,9 +40,13 @@ def main():
 	# MySQL query
 	sqlQuery = "INSERT INTO data (data_set_id, data_id, number, name, address, position_lat, position_lng, bike_stands, status, available_bike_stands, available_bikes, last_update)" \
 	"VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
+	
+	dataset_query = "SELECT MAX(data_set_id) FROM data"
+	
+	cursor.execute(dataset_query)
 
 	# Set ID value for each time a fresh set of JSON data is pulled from the API
-	dataSet = 0
+	dataSet = cursor.fetchall()[0][0]
 
 	# Infinite loop
 	while True:
@@ -86,7 +91,7 @@ def main():
 					count += 1
 
 			except:
-
+				print("except")
 				# Error occured so rollback
 				conex.rollback()
 
