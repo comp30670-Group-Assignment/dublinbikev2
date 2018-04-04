@@ -32,7 +32,7 @@ def stations():
 	return render_template('stations.html')
 
 def getStations():
-	
+	#if you replace the the above return value with this stuff then the webpage will just display the json
 	new_extractor.getLatAndLong()
 	
 	stations = new_extractor.lat_long
