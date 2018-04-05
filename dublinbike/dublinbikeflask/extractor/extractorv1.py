@@ -29,7 +29,7 @@ class Extractor:
         
         #constructor sets up database connection and creates tuple that holds all station names
         
-        self.conex = connection.MySQLConnection(user='root', password='*****', host='0.0.0.0', database='dublinbikes')
+        self.conex = connection.MySQLConnection(user='root', password='Rugby_777', host='0.0.0.0', database='dublinbikes')
         # MySQL object
         self.cursor = self.conex.cursor()
         
@@ -112,6 +112,29 @@ class Extractor:
         output = self.cursor.fetchall()
         
         return output
+    
+    def getRecent(self):
+        
+        result = {}
+        
+        query_count = 'SELECT count(distinct(name)) FROM data;'
+        
+        self.cursor.execute(query_count)
+        count = self.cursor.fetchall()[0][0]
+        
+        print(count)
+        
+        query = 'SELECT * FROM data ORDER BY timestamp DESC LIMIT %d;' % (int(count))
+        
+        self.cursor.execute(query)
+        
+        output = self.cursor.fetchall()
+        
+        for row in output:
+
+            result["%s" % row[4]] = {"latitude" : row[6], "longitude": row[7], "Available Bikes": row[10], "Available Stands": row[11]} 
+        
+        return result
        
     def test(self):
         

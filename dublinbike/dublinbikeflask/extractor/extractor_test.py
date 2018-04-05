@@ -2,14 +2,9 @@ from extractorv1 import *
 
 new_conex = Extractor()
 
-new_conex.getLatAndLong()
+output = new_conex.getRecent()
 
-fh = open("stations.json", "w")
-
-fh.write(new_conex.json)
-
-output = new_conex.test()
-
+print(output)
 
 
 #new_conex.avg_available_bike()
