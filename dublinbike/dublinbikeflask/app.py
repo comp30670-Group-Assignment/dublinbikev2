@@ -1,7 +1,6 @@
-<<<<<<< HEAD
+
 from flask import Flask, render_template
 from extractor import *
-=======
 from flask import Flask, render_template, jsonify
 from data import Articles
 from extractor.extractorv1 import *
@@ -15,7 +14,6 @@ def getDB():
 	conex = mysql.connector.connect(user='root', password='******', database='dublinbikes', host='0.0.0.0')
 	
 	return conex
->>>>>>> hugh
 
 app = Flask(__name__)
 
@@ -33,9 +31,6 @@ def weather():
 def stations():
 	
 	return render_template('stations.html')
-
-<<<<<<< HEAD
-=======
 def getStations():
 	#if you replace the the above return value with this stuff then the webpage will just display the json
 	new_extractor.getLatAndLong()
@@ -57,7 +52,6 @@ def articles():
 def article(id):
 	return render_template('article.html', id=id)
 
->>>>>>> hugh
 if __name__ == '__main__':
 	app.run(debug=True)
 
