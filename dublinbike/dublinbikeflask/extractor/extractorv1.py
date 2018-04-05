@@ -96,7 +96,7 @@ class Extractor:
             
             self.lat_long["%s" % j[0]] = {"%s" % "latitude":float(lat[0][0]), "%s" % "longitude":float(long[0][0])}
             
-        self.json = json.dumps(self.lat_long)
+        #self.json = json.dumps(self.lat_long)
         
             
     def selectHour(self, h, s, x):
