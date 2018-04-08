@@ -27,6 +27,10 @@ def index():
 def weather():
 	return render_template('weather.html')
 
+@app.route('/detailed')
+def detailed():
+	return render_template('detailed.html')
+
 @app.route('/stations')
 def stations():
 	
