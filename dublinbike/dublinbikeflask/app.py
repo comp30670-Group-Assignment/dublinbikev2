@@ -1,5 +1,6 @@
 from flask import Flask, render_template, jsonify
 from dublinbikeflask.extractor import extractorv1
+import functools
 
 app = Flask(__name__)
 
@@ -9,6 +10,7 @@ def add_numbers():
 	return jsonify(recent.getRecent())
 
 @app.route('/')
+@functools.lru_cache(maxsize=256)
 def index():
 	return render_template('home.html')
 
