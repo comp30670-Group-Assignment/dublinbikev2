@@ -121,17 +121,14 @@ class Extractor:
         self.cursor.execute(query_count)
         count = self.cursor.fetchall()[0][0]
         
-        print(count)
-        
-        query = 'SELECT * FROM data ORDER BY timestamp DESC LIMIT %d;' % (int(count))
+        query = 'SELECT name, position_lat, position_lng, available_bike_stands, available_bikes FROM data ORDER BY timestamp DESC LIMIT %d;' % (int(count))
         
         self.cursor.execute(query)
         
         output = self.cursor.fetchall()
         
         for row in output:
-
-            result["%s" % row[4]] = {"latitude" : row[6], "longitude": row[7], "available_bikes": row[10], "available_stands": row[11]} 
+            result[row[0]] = {"latitude" : row[1], "longitude": row[2], "available_stands": row[3], "available_bikes": row[4]} 
         
         return result
     
