@@ -1,0 +1,23 @@
+{% extends 'layout.html' %}
+
+
+    <link rel="stylesheet" href="css2.css">
+{% block body %}
+    
+    <div class="jumbotron text-center">
+
+		<h1>Detailed Information</h1>
+		<h2>Station name</h2>
+    <h2>Station number</h2>
+    <h2>Full address</h2>
+    <h2>Occupancy</h2>
+    <h2>etc.</h2>
+
+	</div>
+
+	<div id="googleMap" style="width:100%;height:400px;"></div>
+
+	<script src="{{ url_for('static', filename='javascriptNew.js') }}"></script>
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA55VhjQyX8BeKEq7Przs3q7NU9RBLNBRg&callback=mapInit"></script>
+
+{% endblock %}
