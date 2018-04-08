@@ -3,7 +3,7 @@ from dublinbikeflask.extractor import extractorv1
 
 app = Flask(__name__)
 
-@app.route('/_add_numbers')
+@app.route('/_map_data')
 def add_numbers():
 	recent = extractorv1.Extractor()
 	return jsonify(recent.getRecent())

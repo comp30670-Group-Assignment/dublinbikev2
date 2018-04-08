@@ -131,24 +131,9 @@ class Extractor:
         
         for row in output:
 
-            result["%s" % row[4]] = {"latitude" : row[6], "longitude": row[7], "Available Bikes": row[10], "Available Stands": row[11]} 
+            result["%s" % row[4]] = {"latitude" : row[6], "longitude": row[7], "available_bikes": row[10], "available_stands": row[11]} 
         
         return result
-       
-    def test(self):
-        
-        
-        query = 'SELECT AVG(available_bikes) FROM data WHERE name = "SMITHFIELD NORTH" and HOUR(timestamp) = 8;'
-        
-        print(query)
-        
-        self.cursor.execute(query)
-        
-        output = self.cursor.fetchall()
-        
-        return output
-    
-    
     
     def closeConex(self):
         
