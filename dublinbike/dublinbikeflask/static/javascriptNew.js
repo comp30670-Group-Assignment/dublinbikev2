@@ -1,7 +1,7 @@
 // Alasa's function to open up a new pop-up window when one of the markers is selected.
 // The URL needs to be changed to show the weather and station Google charts, etc.
 function poponclick(){
-    var testwindow = window.open("http://www.this-page-intentionally-left-blank.org/", "_blank",  "width=600,height=400");
+    var testwindow = window.open("detailed", "_blank",  "width=600,height=400");
     testwindow.moveTo(400, 400);
 }
   
