@@ -7,7 +7,7 @@
     <script type=text/javascript>
   		$SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
   		$.getJSON($SCRIPT_ROOT + '/_add_numbers', function(data) {
-        	console.log(data.result);
+        	console.log(data);
       	});
 	</script>
     

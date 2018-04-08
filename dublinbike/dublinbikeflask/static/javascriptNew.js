@@ -8,7 +8,7 @@ function mapInit() {
   	xhttp.onreadystatechange = function() {
     	if (this.readyState == 4 && this.status == 200) {
       		locations = JSON.parse(this.responseText);
-      			
+      		
       		// Create empty array 'index'
 			var index = [];
 			// Add (i.e. 'push') the next xID item to the array

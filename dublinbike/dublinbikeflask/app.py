@@ -1,20 +1,15 @@
 from flask import Flask, render_template, jsonify
-#from extractor import *
+from dublinbikeflask.extractor import extractorv1
 
 app = Flask(__name__)
 
 @app.route('/_add_numbers')
 def add_numbers():
-	#a = request.args.get('a', 0, type=int)
-	#b = request.args.get('b', 0, type=int)
-	a = 10;
-	b = 10;
-	return jsonify(result=a + b)
+	recent = extractorv1.Extractor()
+	return jsonify(recent.getRecent())
 
-#placeholder for current file
 @app.route('/')
 def index():
-# Normally we return a template, not a string.
 	return render_template('home.html')
 
 @app.route('/weather')

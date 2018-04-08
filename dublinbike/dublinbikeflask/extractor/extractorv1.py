@@ -4,9 +4,9 @@ import time
 import datetime
 
 # Import MySQl
-from mysql.connector import (connection, cursor)
-from gevent.libev.corecext import stat
-
+#from mysql.connector import (connection, cursor)
+from mysql.connector import (connection)
+#from gevent.libev.corecext import stat
 
 class Extractor:
      
@@ -18,8 +18,6 @@ class Extractor:
     
     def __init__(self):
         
-        
-        
         """
         Aim of this class is to return a dictionary that holds an entry for every station.
         This entry will consist of a bi-dimensional dictionary. The first level of this 
@@ -29,7 +27,8 @@ class Extractor:
         
         #constructor sets up database connection and creates tuple that holds all station names
         
-        self.conex = connection.MySQLConnection(user='root', password='*****', host='0.0.0.0', database='dublinbikes')
+        self.conex = connection.MySQLConnection(user='root', password='Mystro1993', host='localhost', database='software_engineering')
+        #self.conex = mysql.connection.MySQLConnection(user='comp30670', password='UCD2018COMP30670', host='0.0.0.0', database='dublinbikes')
         # MySQL object
         self.cursor = self.conex.cursor()
         
@@ -112,6 +111,29 @@ class Extractor:
         output = self.cursor.fetchall()
         
         return output
+    
+    def getRecent(self):
+        
+        result = {}
+        
+        query_count = 'SELECT count(distinct(name)) FROM data;'
+        
+        self.cursor.execute(query_count)
+        count = self.cursor.fetchall()[0][0]
+        
+        print(count)
+        
+        query = 'SELECT * FROM data ORDER BY timestamp DESC LIMIT %d;' % (int(count))
+        
+        self.cursor.execute(query)
+        
+        output = self.cursor.fetchall()
+        
+        for row in output:
+
+            result["%s" % row[4]] = {"latitude" : row[6], "longitude": row[7], "Available Bikes": row[10], "Available Stands": row[11]} 
+        
+        return result
        
     def test(self):
         
