@@ -20,7 +20,7 @@ function mapInit() {
         	// Right now all markers are being generated, but they are being given all the same
         	// content, when they should be given content depending on their own personal info.
 			for(i = 0; i < index.length; i++) {
-    			var mytext = index[i] + "<br> Station No.: " + "<br> Free bikes: ";
+    			var mytext = index[i] + "<br> Station No.: " + "<br> Free bikes: <br><a href='stations'>Click for more information.</a>" ;
     			var myinfowindow = new google.maps.InfoWindow({content: mytext});
              
 				var position = new google.maps.LatLng(locations[index[i]].latitude, locations[index[i]].longitude);
