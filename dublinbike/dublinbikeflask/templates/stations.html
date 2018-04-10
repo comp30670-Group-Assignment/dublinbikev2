@@ -1,20 +1,19 @@
 {% extends 'layout.html' %}
 
+{% block head %}
 
-    <link rel="stylesheet" href="css2.css">
-{% block body %}
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script>
+    	$SCRIPT_ROOT = {{ request.script_root|tojson|safe }}; 
+    </script>
     
-    <div class="jumbotron text-center">
+{% endblock %}    
+    
+{% block body %}
 
-		<h1>Welcome Muskaqueers!</h1>
-		<p class="lead">Don't be silly, wrap your...</p>
-		<h2>GitHub repository!</h2>
-
-	</div>
-
-	<div id="googleMap" style="width:100%;height:400px;"></div>
+	<div id="googleMap" style="width:100%;height:600px;margin-left:0;margin-right:0"></div>
 
 	<script src="{{ url_for('static', filename='javascriptNew.js') }}"></script>
-	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA55VhjQyX8BeKEq7Przs3q7NU9RBLNBRg&callback=mapInit"></script>
+	<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA55VhjQyX8BeKEq7Przs3q7NU9RBLNBRg&callback=mapInit"></script>
 
 {% endblock %}

@@ -4,9 +4,9 @@ import time
 import datetime
 
 # Import MySQl
-from mysql.connector import (connection, cursor)
-from gevent.libev.corecext import stat
-
+#from mysql.connector import (connection, cursor)
+from mysql.connector import (connection)
+#from gevent.libev.corecext import stat
 
 class Extractor:
      
@@ -18,8 +18,6 @@ class Extractor:
     
     def __init__(self):
         
-        
-        
         """
         Aim of this class is to return a dictionary that holds an entry for every station.
         This entry will consist of a bi-dimensional dictionary. The first level of this 
@@ -30,6 +28,7 @@ class Extractor:
         #constructor sets up database connection and creates tuple that holds all station names
 
         self.conex = connection.MySQLConnection(user='root', password='******', host='0.0.0.0', database='dublinbikes')
+        
         # MySQL object
         self.cursor = self.conex.cursor()
         
@@ -138,18 +137,23 @@ class Extractor:
        
     def test(self):
         
+        result = {}
         
-        query = 'SELECT AVG(available_bikes) FROM data WHERE name = "SMITHFIELD NORTH" and HOUR(timestamp) = 8;'
+        query_count = 'SELECT count(distinct(name)) FROM data;'
         
-        print(query)
+        self.cursor.execute(query_count)
+        count = self.cursor.fetchall()[0][0]
+        
+        query = 'SELECT name, position_lat, position_lng, available_bike_stands, available_bikes FROM data ORDER BY timestamp DESC LIMIT %d;' % (int(count))
         
         self.cursor.execute(query)
         
         output = self.cursor.fetchall()
         
-        return output
-    
-    
+        for row in output:
+            result[row[0]] = {"latitude" : row[1], "longitude": row[2], "available_stands": row[3], "available_bikes": row[4]} 
+        
+        return result
     
     def closeConex(self):
         
