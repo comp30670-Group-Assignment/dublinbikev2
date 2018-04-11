@@ -35,11 +35,11 @@ function mapInit() {
     		var marker = new google.maps.Marker({
     			position: position, 
     			map: map,
-    			infowindow: myinfowindow,
-    			markerID: markerCounter
+    			infowindow: myinfowindow
+    			//markerID: markerCounter
     		});
     		
-    		markerArray.push(marker);
+    		//markerArray.push(marker);
     				
     		google.maps.event.addListener(marker, 'click', function() {
         		
