@@ -3,6 +3,9 @@ function mapInit() {
     var map = new google.maps.Map(document.getElementById('googleMap'), {
     zoom: 14, 
     center: mapCenter});
+    
+    //var markerArray = [];
+    //var markerCounter = 0;
   		
   	$.getJSON($SCRIPT_ROOT + '/_map_data', function(data) {
       				
@@ -21,7 +24,7 @@ function mapInit() {
     		var myinfowindow = new google.maps.InfoWindow({content: mytext});
              
 			var position = new google.maps.LatLng(data[index[i]].latitude, data[index[i]].longitude);
-        	var contentString = '<div>' +
+        	var contentString = '<div class="infoWindowOpen">' +
         						'<h2>' + index[i] + '</h2>' +
         						'<p>Available Bikes: ' + data[index[i]].available_bikes + '</p>' +
         						'<p>Available Bike Stands: ' + data[index[i]].available_stands + '</p>' +
@@ -32,12 +35,24 @@ function mapInit() {
     		var marker = new google.maps.Marker({
     			position: position, 
     			map: map,
-    			infowindow: myinfowindow
+    			infowindow: myinfowindow,
+    			markerID: markerCounter
     		});
+    		
+    		markerArray.push(marker);
     				
     		google.maps.event.addListener(marker, 'click', function() {
+        		
+        		//var x = markerArray[markerCounter].get("markerID");
+        		//markerArray[0]['infowindow'].open(map, this);
+        		//alert(x);
+        		//console.log(markerArray);
+        		
         		this.infowindow.open(map, this);
+        		
 			});
+			
+			//markerCounter++;
     				
 		}
 				
