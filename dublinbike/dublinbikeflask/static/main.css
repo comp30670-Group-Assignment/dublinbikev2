@@ -1,0 +1,11 @@
+       #white{
+        background-color:	#e9ecef; 
+        padding: 10px;
+        }
+        
+       #pink{
+        text-align: center;
+        background-color:	#e9ecef; 
+        float: inherit;
+                display:inline-block;
+        }
