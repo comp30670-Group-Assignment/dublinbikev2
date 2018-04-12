@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 import requests
 import json
 import time
@@ -149,14 +149,17 @@ class Extractor:
         interval = 1
         for row in output:
             
+            print(row)
+            
             hour = 1
             
             while hour <= 3:
             
                 result[interval] = {}
                 result[interval]['temp'] = float(row[1]) - 273
-                result[interval]['pressure'] = float(row[2])
+                result[interval]['pressure'] = float(row[5])
                 result[interval]['description'] = row[4]
+                result[interval]['humidity'] = row[2]
                 hour += 1
                 interval += 1
         
