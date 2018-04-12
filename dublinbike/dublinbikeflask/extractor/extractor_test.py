@@ -2,14 +2,7 @@ from extractorv1 import *
 
 new_conex = Extractor()
 
-new_conex.getLatAndLong()
-
-fh = open("stations.json", "w")
-
-fh.write(new_conex.json)
-
-output = new_conex.test()
-
+print(new_conex.getWeather())
 
 
 #new_conex.avg_available_bike()

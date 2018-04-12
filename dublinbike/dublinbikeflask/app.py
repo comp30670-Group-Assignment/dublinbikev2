@@ -1,5 +1,5 @@
 from flask import Flask, render_template, jsonify
-from dublinbikeflask.extractor import extractorv1
+from extractor import extractorv1
 import functools
 import os
 

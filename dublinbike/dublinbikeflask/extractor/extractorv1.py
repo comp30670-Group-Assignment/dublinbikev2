@@ -27,7 +27,7 @@ class Extractor:
         
         #constructor sets up database connection and creates tuple that holds all station names
         
-        self.conex = connection.MySQLConnection(user='root', password='Mystro1993', host='localhost', database='software_engineering')
+        self.conex = connection.MySQLConnection(user='root', password='Rugby_777', host='localhost', database='dublinbikes')
         #self.conex = mysql.connection.MySQLConnection(user='comp30670', password='UCD2018COMP30670', host='0.0.0.0', database='dublinbikes')
         # MySQL object
         self.cursor = self.conex.cursor()
@@ -129,6 +129,35 @@ class Extractor:
         
         for row in output:
             result[row[0]] = {"latitude" : row[1], "longitude": row[2], "available_stands": row[3], "available_bikes": row[4]} 
+        
+        return result
+    
+    def getWeather(self):
+        
+        result = {}
+        
+        now = datetime.datetime.now()
+        
+        day = now.day
+        month = now.month
+        
+        query = 'select * from weatherForecast WHERE DAY(FROM_UNIXTIME(dt)) = %d AND MONTH(FROM_UNIXTIME(dt)) = %d' % (day, month)
+        
+        self.cursor.execute(query)
+        output = self.cursor.fetchall()
+        interval = 1
+        for row in output:
+            
+            hour = 1
+            
+            while hour <= 3:
+            
+                result[interval] = {}
+                result[interval]['temp'] = float(row[1]) - 273
+                result[interval]['pressure'] = float(row[2])
+                result[interval]['description'] = row[4]
+                hour += 1
+                interval += 1
         
         return result
     
