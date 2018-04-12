@@ -1,3 +1,6 @@
+var d = new Date();
+document.getElementById("dateCode").innerHTML = d.toUTCString();
+
 function mapInit() {
 	var mapCenter = {lat: 53.3498, lng: -6.2603};
     var map = new google.maps.Map(document.getElementById('googleMap'), {
@@ -35,18 +38,19 @@ function mapInit() {
     		var marker = new google.maps.Marker({
     			position: position, 
     			map: map,
-    			infowindow: myinfowindow
-    			//markerID: markerCounter
+    			infowindow: myinfowindow,
+    			markerID: 1
     		});
     		
     		//markerArray.push(marker);
     				
     		google.maps.event.addListener(marker, 'click', function() {
         		
-        		//var x = markerArray[markerCounter].get("markerID");
+        		var x = marker["markerID"];
         		//markerArray[0]['infowindow'].open(map, this);
         		//alert(x);
         		//console.log(markerArray);
+        		//var x = marker.get("markerID");
         		
         		this.infowindow.open(map, this);
         		
