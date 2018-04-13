@@ -139,29 +139,23 @@ class Extractor:
         
         now = datetime.datetime.now()
         
-        day = now.day
+        day = now.day + 1
         month = now.month
         
         query = 'select * from weatherForecast WHERE DAY(FROM_UNIXTIME(dt)) = %d AND MONTH(FROM_UNIXTIME(dt)) = %d' % (day, month)
         
         self.cursor.execute(query)
         output = self.cursor.fetchall()
-        interval = 1
+        print(output)
         for row in output:
-            
-            print(row)
-            
-            hour = 1
-            
-            while hour <= 3:
-            
-                result[interval] = {}
-                result[interval]['temp'] = float(row[1]) - 273
-                result[interval]['pressure'] = float(row[5])
-                result[interval]['description'] = row[4]
-                result[interval]['humidity'] = row[2]
-                hour += 1
-                interval += 1
+
+            hour = row[6]
+            result[hour] = {}
+            result[hour]['temp'] = float(row[1]) - 273
+            result[hour]['pressure'] = float(row[5])
+            result[hour]['description'] = row[4]
+            result[hour]['humidity'] = row[2]
+    
         
         return result
     

@@ -1,8 +1,16 @@
 from extractorv1 import *
+from statsmodels.tools import grouputils
+import json
 
 new_conex = Extractor()
 
-print(new_conex.getWeather())
+output = new_conex.getWeather()
+
+output = json.dumps(output)
+
+fh = open("weatherForecast_test.json", 'w+')
+
+fh.write(output)
 
 
 #new_conex.avg_available_bike()
