@@ -22,30 +22,52 @@ def predictions():
 	
 	predictions = {}
 	
-	for i in range(1,101):
+	for a in range(0,103):
 		
-		df_reg = pd.read_sql_query("SELECT available_bikes, timestamp, temp, main , pressure, humidity, HOUR(FROM_UNIXTIME(dt)) as hour FROM dublinbikes.data as dd join dublinbikes.dublin_weather as dw where hour(dd.timestamp) = hour(from_unixtime(dw.dt)) and day(dd.timestamp) = day(from_unixtime(dw.dt)) and month(dd.timestamp) = month(from_unixtime(dw.dt)) and dd.number = %d" % (i), conex)
-        df_reg['day'] = [0] * len(df_reg)
+		try:
+			
+			df_weather = pd.read_sql_query("SELECT temp, humidity, pressure, hour, dt_txt, description from weatherForecast where DAY(dt_txt) = %d" % day, conex)
+			
+			for j, row in df_weather.iterrows():
+		
+			    df_weather.loc[j, 'day'] = pd.to_datetime(row['dt_txt']).weekday_name
+			
+				#make dummy variables for each day of the week
+				dummy = pd.get_dummies(df_weather['day'])
+				df_weather = pd.concat([dummy, df_weather], axis = 1)
+				days = ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday']
+				for x in days:
+				    if df_weather['day'][0] != x:
+				
+				        df_weather[x] = [0] * len(df_weather)
+				
+				
+				
+				#construct weather dummy variables by getting all unique weather descriptions from the database
+				dummy = pd.get_dummies(df_weather['description'])
+				df_weather = pd.concat([df_weather,dummy], axis = 1) 
+				unique_weather = pd.read_sql_query("SELECT DISTINCT(main) FROM dublin_weather", conex)
+				for y, row2 in unique_weather.iterrows():
+				
+				    if not row2['main'] in df_weather['description'].values:
+				
+				        df_weather[row2['main']] = [0] * len(df_weather)
+				        
+				df_weather = df_weather.drop(['day','description','dt_txt'], axis = 1)
+				
+				df_weather = df_weather[['Friday','Saturday','Sunday','Thursday','Tuesday','Wednesday','temp','pressure','humidity','hour','Monday','Clear','Clouds','Drizzle','Mist','Rain','Snow','Fog']]
+				
+				rf_test = pickle.load(open("%d.pkl"% a, 'rb'))
+				
+				prediction = rf_test.predict(df_weather)
+				
+				predictions[a] = prediction
+		except:
+			
+			result[i] = 0
 	
-        for j, row in df_reg.iterrows():
-        	
-        	df_reg.loc[j, 'day'] = pd.to_datetime(row['timestamp']).weekday_name
-
-        dummy= pd.get_dummies(df_reg['day'])
-        df_reg = pd.concat([dummy, df_reg], axis = 1)
-
-        dummy = pd.get_dummies(df_reg['main'])
-        df_reg = pd.concat([df_reg,dummy], axis = 1) 
-
-        df_reg_ready = df_reg.drop(['timestamp','available_bikes','day','main'], axis = 1)
-        
-        rf = pickle.load(open("%d.pkl" %i, 'rb'))
-        
-        predicted_test = rf_test.predict(df_reg['available_bikes'])
-        
-        predictions[i] = predicted_test
-     
 	return predictions
+
 	
 	
 
