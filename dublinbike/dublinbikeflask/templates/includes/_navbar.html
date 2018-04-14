@@ -1,178 +1,37 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a href="/"><h1>DUBLIN BIKES</h1></a>
-  <style>.dropbtn {
-    background-color: #e9ecef;
-    color: white;
-    padding: 16px;
-    font-size: 16px;
-    border: none;
-    cursor: pointer;
-}
-
-.dropbtn:hover, .dropbtn:focus {
-    background-color: #bbbbbb;
-}
-
-#myInput {
-    border-box: box-sizing;
-    background-image: url('searchicon.png');
-    background-position: 14px 12px;
-    background-repeat: no-repeat;
-    font-size: 16px;
-    padding: 14px 20px 12px 45px;
-    border: none;
-    border-bottom: 1px solid #ddd;
-}
-
-#myInput:focus {outline: 3px solid #ddd;}
-
-.dropdown {
-    position: relative;
-    display: inline-block;
-}
-
-.dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: #f6f6f6;
-    min-width: 230px;
-    overflow: auto;
-    border: 1px solid #ddd;
-    z-index: 1;
-}
-
-.dropdown-content a {
-    color: black;
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
-}
-
-.dropdown a:hover {background-color: #ddd}
-
-.show {display:block;}</style>  
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-    
-    </ul>
-
-<div class="dropdown">
-<button onclick="myFunction()" class="dropbtn">Search a station...</button>
-  <div id="myDropdown" class="dropdown-content">
-    <input type="text" placeholder="Search.." id="myInput" onkeyup="filterFunction()">
-
-                                  
-                                  
-    <a href="https://www.quackit.com/javascript/examples/sample_popup.cfm
-" onclick="basicPopup(this.href);return false">Barrow St.</a>
-    <a href="#base">Benson St.</a>
-    <a href="#blog">Blackhall Place</a>
-    <a href="#contact">Blessington St.</a>
-    <a href="#custom">Bolton St.</a>
-    <a href="#support">Brookfield Rd.</a>
-    <a href="#tools">Cathal Brugha St.</a>
-    <a href="#tools">Charlemont Place</a>
-  <a href="#tools">Christchurch Place</a>
-  <a href="#tools">City Quay</a>
-  <a href="#tools">Clarendon Row</a>
-  <a href="#tools">Clonmel St.</a>
-  <a href="#tools">Collins Barracks Museum</a>
-  <a href="#tools">Convention Center</a>
-  <a href="#tools">Custom House</a>
-  <a href="#tools">Custom House Quay</a>
-  <a href="#tools">Dame St.</a>
-  <a href="#tools">Denmark St.</a>
-  <a href="#tools">Deverell Place</a>
-  <a href="#tools">Earlsfort Terrace</a>
-  <a href="#tools">Eccles St.</a>
-  <a href="#tools">Eccles St. East</a>
-  <a href="#tools">Emmet Rd.</a>
-  <a href="#tools">Exchequer St.</a>
-  <a href="#tools">Excise Walk</a>
-  <a href="#tools">Fenian St.</a>
-  <a href="#tools">Fitzwilliam Square East</a>
-  <a href="#tools">Fitzwilliam Square West</a>
-  <a href="#tools">Fownes St. Upper</a>
-  <a href="#tools">Francis St.</a>
-  <a href="#tools">Frederick St. South</a>
-  <a href="#tools">Georges Quay</a>
-  <a href="#tools">Golden Lane</a>
-  <a href="#tools">Grand Canal Dock</a>
-  <a href="#tools">Grantham St.</a>
-  <a href="#tools">Grattan St.</a>
-  <a href="#tools">Greek St.</a>
-  <a href="#tools">Guild St.</a>
-  <a href="#tools">Hanover Quay</a>
-  <a href="#tools">Harcourt Terrace</a>
-  <a href="#tools">Hardwicke Place</a>
-        <a href="#tools">Hardwicke St.</a>
-  <a href="#tools">Hatch St.</a>
-  <a href="#tools">Herbert Place</a>
-  <a href="#tools">Hueston Bridge (North)</a>
-        <a href="#tools">Hueston Bridge (South)</a>
-  <a href="#tools">Hueston Station (Car park)</a>
-  <a href="#tools">Hueston Station (Central)</a>
-  <a href="#tools">High St.</a>
-        <a href="#tools">James St.</a>
-  <a href="#tools">Jervis St.</a>
-  <a href="#tools">John St. West</a>
-  <a href="#tools">Kevin St.</a>
-        <a href="#tools">Kilmainham Gaol</a>
-  <a href="#tools">Kilmainham Lane</a>
-  <a href="#tools">King St. North</a>
-  <a href="#tools">Leinster St. South</a>
-        <a href="#tools">Lime St.</a>
-  <a href="#tools">Market St. South</a>
-  <a href="#tools">Mater Hospital</a>
-  <a href="#tools">Merrion Square East</a>
-        <a href="#tools">Merrion Square West</a>
-  <a href="#tools">Molesworth St.</a>
-  <a href="#tools">Mount Brown</a>
-  <a href="#tools">Mount St. Lower</a>
-        <a href="#tools">Mountjoy Square West</a>
-  <a href="#tools">New Central Bank</a>
-  <a href="#tools">Newman House</a>
-  <a href="#tools">North Circular Rd.</a>
-        <a href="#tools">Oliver Bond St.</a>
-  <a href="#tools">Ormond Quay Upper</a>
-  <a href="#tools">Parkgate St.</a>
-  <a href="#tools">Parnell Square North</a>
-  <a href="#tools">Parnell St.</a>
-  <a href="#tools">Pearse St.</a>
-  <a href="#tools">Portobello Rd.</a>
-  <a href="#tools">Princes St./O'Connell St.</a>
-  <a href="#tools">Rothe Abbey</a>
-  <a href="#tools">Royal Hospital</a>
-  <a href="#tools">Sandwith St.</a>
-  <a href="#tools">Sir Patrick Dun's</a>  
-  <a href="#tools">Smithfield</a>
-  <a href="#tools">Smithfield North</a>
-  <a href="#tools">South Dock Rd.</a>  
-  <a href="#tools">St. James Hospital (Luas)</a>
-  <a href="#tools">St. James Hospital (Central)</a>
-  <a href="#tools">St. Stephen's Green East</a>  
-  <a href="#tools">St. Stephen's Green South</a>
-  <a href="#tools">Strand St. Great</a>
-  <a href="#tools">Talbot St.</a>  
-  <a href="#tools">The Point</a>
-  <a href="#tools">Townsend St.</a>
-  <a href="#tools">Upper Sherrard St.</a>  
-  <a href="#tools">Western Way</a>
-  <a href="#tools">Wilton Terrace</a>
-  <a href="#tools">Wolfe Tone St.</a>    
-  <a href="#tools">York St. East</a>
-  <a href="#tools">York St. West</a>
-  </div></div>
-      <div style="width:332px; height:-100px;">
-        
-        <a class="weatherwidget-io" href="https://forecast7.com/en/53d35n6d26/dublin/
-" data-label_1="DUBLIN" data-label_2="WEATHER" data-mode="Current" data-theme="pure" data-basecolor="#F8F8F8" >DUBLIN WEATHER</a></div>
-      
+<nav class="navbar navbar-inverse" id="navCustom">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+      <a class="navbar-brand" id="navbar-brand-custom" href="/"><b>Dublin Bikes</b></a>
     </div>
-
-    
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+      
+      	<li id="right-block-2">
+      	<div class="dropdown">
+			<button onclick="myFunction()" class="dropbtn">Search a station...</button>
+  			<div id="myDropdown" class="dropdown-content">
+    			<input type="text" placeholder="Search.." id="myInput" onkeyup="filterFunction()">
+    			<div id="marker-loc"></div>
+    		</div>
+      	</div>
+      	</li>
+      	
+      	 <li id="right-block-1">
+      	 <div id="weather-block">
+        	<a class="weatherwidget-io" href="https://forecast7.com/en/53d35n6d26/dublin/" data-label_1="DUBLIN" data-label_2="WEATHER" data-mode="Current" data-theme="pure" data-basecolor="#F8F8F8" >DUBLIN WEATHER</a>
+         </div>
+         </li>
+      
+      </ul>
+    </div>
+  </div>
 </nav>
+      

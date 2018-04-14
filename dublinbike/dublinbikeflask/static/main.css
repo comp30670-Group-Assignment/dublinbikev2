@@ -1,11 +1,180 @@
-       #white{
-        background-color:	#e9ecef; 
-        padding: 10px;
-        }
-        
-       #pink{
-        text-align: center;
-        background-color:	#e9ecef; 
-        float: inherit;
-                display:inline-block;
-        }
+body {
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Navbar */
+
+#navCustom {
+	background-color: #fff;
+	border-left-style: none;
+	border-right-style: none;
+	border-top-style: none;
+	border-bottom-style: none;
+	border-bottom-width: 1pt;
+	border-bottom-color: #000;
+	box-shadow: 5px 5px 5px #D8D8D8;
+}
+
+.navbar-brand {
+	padding-top: 1em;
+	font-size: 30pt;
+	color: #191970 !important;
+}
+
+#weather-block {
+	display: inline-block;
+	width: 100%;
+}
+
+.navbar-right {
+	width: 50%;
+}
+
+#right-block-1 {
+	display: inline-block;
+	float: right;
+	width: 50%;
+}
+
+#right-block-2 {
+	display: inline-block;
+	float: left;
+	width: 50%;
+}
+
+.dropbtn {
+    background-color: #e9ecef;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+}
+
+.dropbtn:hover, .dropbtn:focus {
+    background-color: #bbbbbb;
+}
+
+#myInput {
+    border-box: box-sizing;
+    background-image: url('searchicon.png');
+    background-position: 14px 12px;
+    background-repeat: no-repeat;
+    font-size: 16px;
+    padding: 14px 20px 12px 45px;
+    border: none;
+    border-bottom: 1px solid #ddd;
+    width: 100%;
+}
+
+#myInput:focus {
+	outline: 3px solid #ddd;
+}
+
+.dropdown {
+    display: inline-block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 2em;
+    width: 100%;
+    margin-top 1em !important;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f6f6f6;
+    min-width: 190px;
+    overflow: auto;
+    border: 1px solid #ddd;
+    z-index: 1;
+    width: 100%;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown a:hover {
+	background-color: #ddd
+}
+
+.show {
+	display:block;
+}
+
+#marker-loc {
+	width: 100%;
+	background-color: #D8D8D8;
+	height: 300px;
+	overflow-y: scroll;
+}
+
+/* Google Maps API infowindow */
+.map-button {
+	margin-left: 20%;
+	margin-right: 20%;
+	color: #191970;
+	background-color: #fff;
+	width: 60%;
+	border-color: #191970;
+	border-style: solid;
+	border-width: 1pt;
+	border-radius: 5px;
+	padding: 0.5em;
+	margin-top: 1em;
+	margin-bottom: 1em;
+}
+
+#info-head {
+	text-align: center;
+}
+
+.info-text {
+	font-size: 12pt;
+	text-align: left;
+	margin-top: 1em;
+}
+
+/* Google Graphs */
+#modal-graph {
+	width: 100%;
+	margin-left: auto;
+	margin-right: auto;
+	padding-left: calc((100% - 400px)/2);
+	padding-right: calc((100% - 400px)/2);
+	background-color: #fff;
+	display: inline-block;
+}
+
+/* Footer */
+#footer-box {
+	width: 100%;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 2em;
+	background-color: #fff;
+}
+
+#footer-link {
+	width: 60px;
+	height: 60px;
+	margin-left: calc((100% - 60px) / 2);
+}
+
+#footer-image {
+	width: 60px;
+	height: 60px;
+	border-radius: 25px;
+	cursor: pointer;
+}
+
+#footer-text {
+	font-size: 10pt;
+	text-align: center;
