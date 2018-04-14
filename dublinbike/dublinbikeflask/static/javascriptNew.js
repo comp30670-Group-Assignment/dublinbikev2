@@ -1,11 +1,13 @@
+// Hold marker data.
+var markerArray = [];
+var map;
+
 function mapInit() {
 	var mapCenter = {lat: 53.3498, lng: -6.2603};
-    var map = new google.maps.Map(document.getElementById('googleMap'), {
+    map = new google.maps.Map(document.getElementById('googleMap'), {
     zoom: 14, 
     center: mapCenter});
     
-    // Hold marker data.
-    var markerArray = [];
     // Count number of markers initiated.
     var markerCounter = 0;
     // Hold modal data.
@@ -67,8 +69,6 @@ function mapInit() {
     		google.maps.event.addListener(marker, 'click', function() {
     		
     			var x = this.markerID;
-    			
-    			console.log(index[0]);
         		
         		if (open.length != 0) {
         			for(var i = 0; i < open.length;i++) {
@@ -124,3 +124,18 @@ function mapInit() {
 window.setInterval(function(){
   	mapInit()
 }, 300000);
+
+// Trigger Google Maps marker infowindow.
+function markerFlag(markerNum) {
+	google.maps.event.trigger(markerArray[markerNum], 'click');
+}
+
+// Get station marker names and populate dropdown menu.
+$.getJSON($SCRIPT_ROOT + '/_drop_data', function(data) {
+
+	// Append marker locations to dropdown menu.
+	for (var i = 0; i < data.length; i++) {
+		$("#marker-loc").append("<a href='#' onclick='markerFlag("+i+")'>"+data[i]+"</a>");
+	}
+
+});
