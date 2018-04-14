@@ -18,3 +18,12 @@ function filterFunction() {
         }
     }
 }
+
+$.getJSON($SCRIPT_ROOT + '/_drop_data', function(data) {
+
+	// Append marker locations to dropdown menu.
+	for (var i = 0; i < data.length; i++) {
+		$("#marker-loc").append("<p>"+data[i]+"</p>");
+	}
+
+});
