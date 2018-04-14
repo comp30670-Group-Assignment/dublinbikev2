@@ -158,6 +158,10 @@ class Extractor:
         
         return result
     
+    def stationNames(self):
+        # Return station names that will be used to populate dropdown in navbar.
+        return self.station_names;
+    
     def closeConex(self):
         
         self.conex.close()
