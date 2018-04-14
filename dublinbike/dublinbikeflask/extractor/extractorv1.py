@@ -26,6 +26,7 @@ class Extractor:
         """
         
         #constructor sets up database connection and creates tuple that holds all station names
+        self.conex = connection.MySQLConnection(user='root', password='Mystro1993', host='localhost', database='software_engineering')
         
         # MySQL object
         self.cursor = self.conex.cursor()
