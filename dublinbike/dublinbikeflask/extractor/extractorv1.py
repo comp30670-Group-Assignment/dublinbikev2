@@ -37,7 +37,6 @@ class Extractor:
         
         self.station_names = self.cursor.fetchall()
         
-        
     
     def avg_available_stand(self):
         
@@ -79,6 +78,9 @@ class Extractor:
         
         output = self.cursor.fetchall()
         
+        # Close DB connection.    
+        self.conex.close()
+        
         return output
                 
     def getLatAndLong(self):
@@ -109,6 +111,9 @@ class Extractor:
         
         output = self.cursor.fetchall()
         
+        # Close DB connection.    
+        self.conex.close()
+        
         return output
     
     def getRecent(self):
@@ -128,6 +133,9 @@ class Extractor:
         
         for row in output:
             result[row[0]] = {"latitude" : row[1], "longitude": row[2], "available_stands": row[3], "available_bikes": row[4]} 
+        
+        # Close DB connection.    
+        self.conex.close()
         
         return result
     
@@ -155,8 +163,11 @@ class Extractor:
             result[hour]['humidity'] = row[2]
     
         
+        # Close DB connection.    
+        self.conex.close()
+        
         return result
     
-    def closeConex(self):
-        
-        self.conex.close()
+    def stationNames(self):
+        # Return station names that will be used to populate dropdown in navbar.
+        return self.station_names;
