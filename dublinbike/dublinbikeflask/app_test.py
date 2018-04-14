@@ -10,4 +10,4 @@ from app import predictions
 
 predictions = predictions("available_bike_stands")
 
-print(predictions)
+print(predictions[20])

@@ -79,7 +79,8 @@ def predictions(bike):
 			predictions[a] = prediction
 		
 		except:
-			print(a)
+			predictions[a] = []
+			predictions[a] = [0] * 24
 			pass
 			
 			
