@@ -8,8 +8,13 @@ import datetime
 import pickle
 
 
-def predictions():
+def predictions(bike):
 	
+	if bike == "available_bikes":
+		b = "bikes"
+	else:
+		b = "stands"
+		
 	conex = sql.create_engine("mysql+pymysql://root:Rugby_777@localhost/dublinbikes")
 	
 	now = datetime.datetime.now()
@@ -25,13 +30,14 @@ def predictions():
 	
 	
 	for a in range(1,103):
-			
+		
 		try:
 			
+
 			predictions[a] = []
 			
 			
-			df_bikes_test = pd.read_sql_query("SELECT AVG(available_bikes) as available_bikes, HOUR(timestamp) as hour from data where number = %d group by hour" % a, conex)
+			df_bikes_test = pd.read_sql_query("SELECT AVG(%s) as %s, HOUR(timestamp) as hour from data where number = %d group by hour" % (bike, bike, a), conex)
 			df_weather = pd.read_sql_query("SELECT temp, humidity, pressure, hour, dt_txt, description from weatherForecast where DAY(dt_txt) = %d" % day, conex)
 			
 			for j, row in df_weather.iterrows():
@@ -63,7 +69,8 @@ def predictions():
 			
 			df_weather = df_weather[['Friday','Saturday','Sunday','Thursday','Tuesday','Wednesday','temp','pressure','humidity','hour','Monday','Clear','Clouds','Drizzle','Mist','Rain','Snow','Fog']]
 			
-			rf_test = pickle.load(open("static/%d.pkl" % a, 'rb'))
+			
+			rf_test = pickle.load(open("static/pickle/%s_%d.pkl" % (b, a), 'rb'))
 			
 			prediction = rf_test.predict(df_weather.values)
 			
@@ -72,10 +79,9 @@ def predictions():
 			predictions[a] = prediction
 		
 		except:
-		
-			print("except")
-			predictions[a] = 0
+			print(a)
 			pass
+			
 			
 	return predictions
 

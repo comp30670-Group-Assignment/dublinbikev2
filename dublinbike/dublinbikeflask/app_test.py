@@ -8,6 +8,6 @@ import datetime
 import pickle
 from app import predictions
 
-predictions = predictions()
+predictions = predictions("available_bike_stands")
 
 print(predictions)
