@@ -44,10 +44,10 @@ function mapInit() {
              
 			var position = new google.maps.LatLng(data[index[i]].latitude, data[index[i]].longitude);
         	var contentString = '<div class="infoWindowOpen">' +
-        						'<h2>' + index[i] + '</h2>' +
-        						'<p>Available Bikes: ' + data[index[i]].available_bikes + '</p>' +
-        						'<p>Available Bike Stands: ' + data[index[i]].available_stands + '</p>' +
-        						'<button type="button" class="btn map-button" id="mapBtn">Open Modal</button>' +
+        						'<h4 id="info-head">' + index[i] + '</h4>' +
+        						'<p class="info-text">Available Bikes: ' + data[index[i]].available_bikes + '</p>' +
+        						'<p class="info-text">Available Bike Stands: ' + data[index[i]].available_stands + '</p>' +
+        						'<button type="button" class="btn map-button" id="mapBtn">Open Data</button>' +
         						'</div>';
         			
         	var myinfowindow = new google.maps.InfoWindow({content: contentString});
@@ -67,6 +67,8 @@ function mapInit() {
     		google.maps.event.addListener(marker, 'click', function() {
     		
     			var x = this.markerID;
+    			
+    			console.log(index[0]);
         		
         		if (open.length != 0) {
         			for(var i = 0; i < open.length;i++) {
@@ -81,10 +83,33 @@ function mapInit() {
 				$(document).ready(function(){
     				$("#mapBtn").click(function(){
         				$("#mapModal").modal();
-        				console.log(modalArray[x]);
-        				$("#modal-map-head").html(modalArray[x].available_bikes);
+        				$("#modal-map-head").html("<h2 id='modal-title' style='text-align:center;font-weight:bold'>"+index[x]+"</h2>");
     				});
 				});
+				
+				// Load google charts
+				google.charts.load('current', {'packages':['corechart']});
+				google.charts.setOnLoadCallback(drawChart);
+
+				// Draw the chart and set the chart values
+				function drawChart() {
+  					var data = google.visualization.arrayToDataTable([
+  					['Task', 'Hours per Day'],
+  					['Work', 8],
+  					['Friends', 2],
+  					['Eat', 2],
+  					['TV', 3],
+  					['Gym', 2],
+  					['Sleep', 7]
+					]);
+				
+					// Optional; add a title and set the width and height of the chart
+  					var options = {'title':'My Average Day', 'width':400, 'height':300};
+
+  					// Display the chart inside the <div> element with id="piechart"
+  					var chart = new google.visualization.PieChart(document.getElementById('modal-graph'));
+  					chart.draw(data, options);
+				}
         		
 			});
 			
