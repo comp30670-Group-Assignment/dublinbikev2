@@ -115,6 +115,8 @@ class Extractor:
     
     def getRecent(self):
         
+        #Method to return most up to date bike data
+        
         result = {}
         
         query_count = 'SELECT count(distinct(name)) FROM data;'
@@ -134,6 +136,8 @@ class Extractor:
         return result
     
     def getWeather(self):
+        
+        #Method to return a today's forecast hour and format it in a json style to be imported into javascript
         
         result = {}
         

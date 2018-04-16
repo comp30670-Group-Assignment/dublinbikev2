@@ -21,24 +21,27 @@ def predictions(bike):
 	        
 	day = now.day
 	
-	query_weather = "select * from weatherForecast where day(from_unixtime(dt)) = %d" % (day)
-	
-	df_weather = pd.read_sql_query(query_weather, conex)
+	#pull today's forecast
 	
 	predictions = {}
 	
+	df_weather = pd.read_sql_query("SELECT temp, humidity, pressure, hour, dt_txt, description from weatherForecast where DAY(dt_txt) = %d" % day, conex)
 	
+	#for each station...
 	
 	for a in range(1,103):
 		
 		try:
 			
+			
 
 			predictions[a] = []
 			
+			#pull average bike data for that station aswell as weather forecast
+			
 			
 			df_bikes_test = pd.read_sql_query("SELECT AVG(%s) as %s, HOUR(timestamp) as hour from data where number = %d group by hour" % (bike, bike, a), conex)
-			df_weather = pd.read_sql_query("SELECT temp, humidity, pressure, hour, dt_txt, description from weatherForecast where DAY(dt_txt) = %d" % day, conex)
+			
 			
 			for j, row in df_weather.iterrows():
 	
