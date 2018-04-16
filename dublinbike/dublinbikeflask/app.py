@@ -21,11 +21,14 @@ def predictions(bike):
 	        
 	day = now.day
 	
+	
 	#pull today's forecast
 	
 	predictions = {}
 	
-	df_weather = pd.read_sql_query("SELECT temp, humidity, pressure, hour, dt_txt, description from weatherForecast where DAY(dt_txt) = %d" % day, conex)
+	predictions['predictions'] = {}
+	
+	
 	
 	#for each station...
 	
@@ -35,10 +38,11 @@ def predictions(bike):
 			
 			
 
-			predictions[a] = []
+			predictions['predictions'][a] = []
 			
 			#pull average bike data for that station aswell as weather forecast
 			
+			df_weather = pd.read_sql_query("SELECT temp, humidity, pressure, hour, dt_txt, description from weatherForecast where DAY(dt_txt) = %d" % day, conex)
 			
 			df_bikes_test = pd.read_sql_query("SELECT AVG(%s) as %s, HOUR(timestamp) as hour from data where number = %d group by hour" % (bike, bike, a), conex)
 			
@@ -79,12 +83,18 @@ def predictions(bike):
 			
 			prediction = prediction.tolist()
 			
-			predictions[a] = prediction
+			predictions['predictions'][a] = prediction
 		
 		except:
-			predictions[a] = []
-			predictions[a] = [0] * 24
+			print(a)
+			predictions['predictions'][a] = []
+			predictions['predictions'][a] = [0] * 24
 			pass
+		
+	recent = extractorv1.Extractor()
+	recent = recent.getRecent()
+	
+	predictions['Recent'] = recent
 			
 			
 	return predictions
