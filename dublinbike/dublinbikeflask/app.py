@@ -5,7 +5,6 @@ import os
 import sqlalchemy as sql
 import pandas as pd
 import datetime
-import pickle
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
