@@ -4,13 +4,9 @@ import json
 
 new_conex = Extractor()
 
-output = new_conex.getWeather()
+output = new_conex.getAverageDailyAvailablity()
 
-output = json.dumps(output)
-
-fh = open("weatherForecast_test.json", 'w+')
-
-fh.write(output)
+print(output)
 
 
 #new_conex.avg_available_bike()

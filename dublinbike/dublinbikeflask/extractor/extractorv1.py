@@ -149,7 +149,7 @@ class Extractor:
         
         self.cursor.execute(query)
         output = self.cursor.fetchall()
-        print(output)
+    
         for row in output:
 
             hour = row[6]
@@ -162,6 +162,42 @@ class Extractor:
         
         return result
     
+    def getAverageDailyAvailablity(self):
+        #returns a dictionary that has an average value for each day of the week
+        
+        result = {}
+        
+        days_of_week = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"]
+        
+        unique_number = "SELECT DISTINCT(number) FROM data"
+        
+        self.cursor.execute(unique_number)
+        
+        unique_number = self.cursor.fetchall()
+        
+        for j in unique_number:
+            
+            result[j[0]] = []
+            print(result)
+            number = j[0]
+            
+            for i in days_of_week:
+            
+                query = "SELECT AVG(available_bikes) FROM data WHERE number = %d and day = '%s' GROUP BY day" % (number, i)
+            
+                self.cursor.execute(query)
+                output = self.cursor.fetchall()
+                
+                try:
+                    
+                    result[j[0]].append(float(output[0][0]))
+                except:
+                    
+                    result[j[0]].append(0)
+            
+        
+        return result           
+            
     def closeConex(self):
         
         self.conex.close()
