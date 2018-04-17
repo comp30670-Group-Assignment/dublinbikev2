@@ -7,5 +7,9 @@ import pandas as pd
 import datetime
 import pickle
 from app import predictions
+import time
 
-predictions("available_bike_stands")
+while True:
+    predictions("available_bike_stands")
+    
+    time.sleep(24*60*60)
