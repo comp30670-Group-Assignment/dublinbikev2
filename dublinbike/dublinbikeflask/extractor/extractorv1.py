@@ -162,12 +162,11 @@ class Extractor:
         
         return result
     
-<<<<<<< HEAD
+
     def stationNames(self):
         # Return station names for dropdown menu.
         return self.station_names;
     
-=======
     def getAverageDailyAvailablity(self):
         #returns a dictionary that has an average value for each day of the week
         
@@ -203,8 +202,7 @@ class Extractor:
             
         
         return result           
-            
->>>>>>> hugh
+        
     def closeConex(self):
         
         self.conex.close()
