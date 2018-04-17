@@ -6,6 +6,27 @@ import sqlalchemy as sql
 import pandas as pd
 import datetime
 import pickle
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+from sklearn.utils import shuffle
+from sklearn import svm, datasets
+from sklearn.metrics import roc_curve, auc
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import label_binarize
+from sklearn.multiclass import OneVsRestClassifier
+from scipy import interp
+from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy import Column, Integer, String, DateTime, Float, Binary
+from sqlalchemy.orm import sessionmaker
+from sqlalchemy import extract
+import datetime
+import sqlalchemy as sql
+from sklearn.model_selection import train_test_split
+from sklearn.ensemble import RandomForestRegressor
+from sklearn.metrics import r2_score
+from sklearn.externals import joblib
+import pickle
 
 
 def predictions(bike):
