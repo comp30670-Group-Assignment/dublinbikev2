@@ -162,6 +162,10 @@ class Extractor:
         
         return result
     
+    def stationNames(self):
+        # Return station names for dropdown menu.
+        return self.station_names;
+    
     def closeConex(self):
         
         self.conex.close()
