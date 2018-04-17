@@ -28,7 +28,11 @@ function mapInit() {
 		for(i = 0; i < index.length; i++) {
     		var mytext = index[i] + "<br> Station No.: " + "<br> Free bikes: ";
     		var myinfowindow = new google.maps.InfoWindow({content: mytext});
-    		
+            // We've looped through to the end of the loop, so now i has the final value...
+            var e = index[i];
+            
+            
+    
     		// Push to array to store data returned by $.getJSON.
     		modalArray.push(data[index[i]]);
     		
@@ -51,27 +55,29 @@ function mapInit() {
         						'<p class="info-text">Available Bike Stands: ' + data[index[i]].available_stands + '</p>' +
         						'<button type="button" class="btn map-button" id="mapBtn">Open Data</button>' +
         						'</div>';
-        			
+        
+            
         	var myinfowindow = new google.maps.InfoWindow({content: contentString});
-        			
+           
     		var marker = new google.maps.Marker({
     			position: position, 
     			map: map,
     			infowindow: myinfowindow,
     			markerID: markerCounter,
     			icon: iconVal
-    		});
+    		})	
+            
+            ;
+            
+            
     		
     		markerArray.push(marker);
-    		
     		open = [];
-    				
     		google.maps.event.addListener(marker, 'click', function() {
-    		
     			var x = this.markerID;
-        		
         		if (open.length != 0) {
         			for(var i = 0; i < open.length;i++) {
+
         				markerArray[open[i]]['infowindow'].close();
         			}
         		}
@@ -87,30 +93,69 @@ function mapInit() {
     				});
 				});
 				
-				// Load google charts
-				google.charts.load('current', {'packages':['corechart']});
-				google.charts.setOnLoadCallback(drawChart);
+// Load google charts
+google.charts.load('current', {'packages':['corechart']});
+google.charts.setOnLoadCallback(drawVisualization);
+google.charts.setOnLoadCallback(drawVisualization2);
+                
+// Draw the chart and set the chart values
+function drawVisualization() {
+var bensonSt = [2000, 2000, 1000];
+var blackhallPlace = [1500, 1500, 1500];
+    
+var data = google.visualization.arrayToDataTable([
+['day', 'Humidity', 'Temperature', 'Occupancy'],
+['09:00',  bensonSt[0],      bensonSt[1],      bensonSt[2]],
+['12:00',  100,      1120,        599],
+['15:00',  165,      938,      614.6],
+['18:00',  165,      938,      614.6],
+['21:00',  165,      938,      614.6],
+['00:00',  165,      938,      614.6]
+]);
 
-				// Draw the chart and set the chart values
-				function drawChart() {
-  					var data = google.visualization.arrayToDataTable([
-  					['Task', 'Hours per Day'],
-  					['Work', 8],
-  					['Friends', 2],
-  					['Eat', 2],
-  					['TV', 3],
-  					['Gym', 2],
-  					['Sleep', 7]
-					]);
-				
-					// Optional; add a title and set the width and height of the chart
-  					var options = {'title':'My Average Day', 'width':400, 'height':300};
+//var e = index[0];
 
-  					// Display the chart inside the <div> element with id="piechart"
-  					var chart = new google.visualization.PieChart(document.getElementById('modal-graph'));
-  					chart.draw(data, options);
-				}
-        		
+var options = {
+title : e,//'Predicted Station Occupancy Based on Humidity and Temperature',
+vAxis: {title: 'units'},
+hAxis: {title: 'time'},
+'width':650,
+'height':400,
+series: {2: {type: 'line'}}
+};
+
+var chart = new google.visualization.ComboChart(document.getElementById('modal-graph'));
+chart.draw(data, options);
+}
+                
+                
+function drawVisualization2() {
+ 
+var bensonSt = [2000, 2000, 1000];
+var blackhallPlace = [1500, 1500, 1500];
+var data = google.visualization.arrayToDataTable([
+['day', 'Humidity', 'Temperature', 'Occupancy'],
+['Mond',  bensonSt[0],      bensonSt[1],      bensonSt[2]],
+['Tues',  100,      1120,        599],
+['Wed',  165,      938,      614.6],
+['Thurs',  165,      938,      614.6],
+['Fri',  165,      938,      614.6],
+['Sat',  165,      938,      614.6],
+['Sun',  165,      938,      614.6]
+]);
+    
+var options = {
+'width':650,
+'height':400,
+title : 'Station Occupancy Trend This Past Week',
+vAxis: {title: 'units'},
+hAxis: {title: 'Day'},
+seriesType: 'bars',
+};
+
+var chart = new google.visualization.ComboChart(document.getElementById('weather-trend'));
+chart.draw(data, options);
+}
 			});
 			
 			markerCounter++;
