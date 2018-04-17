@@ -5,6 +5,7 @@ import os
 import sqlalchemy as sql
 import pandas as pd
 import datetime
+import json
 """
 import pandas as pd
 import numpy as np
@@ -46,21 +47,21 @@ def predictions(bike):
 	
 	#pull today's forecast
 	
+	
+	
 	predictions = {}
-	
-	predictions['predictions'] = {}
-	
-	
-	
 	#for each station...
 	
 	for a in range(1,103):
+		
+		
+	
 		
 		try:
 			
 			
 
-			predictions['predictions'][a] = []
+			predictions[a] = []
 			
 			#pull average bike data for that station aswell as weather forecast
 			
@@ -105,21 +106,16 @@ def predictions(bike):
 			
 			prediction = prediction.tolist()
 			
-			predictions['predictions'][a] = prediction
+			predictions[a] = prediction
 		
 		except:
 			print(a)
-			predictions['predictions'][a] = []
-			predictions['predictions'][a] = [0] * 24
+			predictions[a] = []
+			predictions[a] = [0] * 24
 			pass
 		
-	recent = extractorv1.Extractor()
-	recent = recent.getRecent()
-	
-	predictions['Recent'] = recent
-			
-			
-	return predictions
+	fh = open("static/predictions.json", 'w')
+	fh.write(json.dumps(predictions))
 
 	
 	
