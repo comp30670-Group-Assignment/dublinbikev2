@@ -9,7 +9,7 @@ import pickle
 from app import predictions
 import time
 
-while True:
-    predictions("available_bike_stands")
+#while True:
+predictions("available_bike_stands")
     
-    time.sleep(24*60*60)
+    #time.sleep(24*60*60)

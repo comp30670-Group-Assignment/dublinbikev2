@@ -49,13 +49,13 @@ def predictions(bike):
 	
 	
 	
-	predictions = {}
+	
 	#for each station...
 	
 	for a in range(1,103):
 		
 		
-	
+		predictions = {}
 		
 		try:
 			
@@ -114,8 +114,8 @@ def predictions(bike):
 			predictions[a] = [0] * 24
 			pass
 		
-	fh = open("static/predictions.json", 'w')
-	fh.write(json.dumps(predictions))
+		fh = open("static/predictions/%s.json" % a, 'w')
+		fh.write(json.dumps(predictions))
 
 	
 	
