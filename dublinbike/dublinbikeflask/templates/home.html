@@ -19,14 +19,16 @@
   	<div class="modal fade" id="mapModal" role="dialog">
     	<div class="modal-dialog">
       		<!-- Modal content-->
-			<div class="modal-content modal-box">
-        		<div class="modal-header">
+			<div class="modal-content modal-box  " style="width:700px;">
+        		<div class="modal-header" style="width:700px;">
           			<button type="button" class="close" data-dismiss="modal">&times;</button>
-          			<div id="modal-map-head"></div>
+          			<div id="modal-map-head"  style="width:700px;"></div>
         		</div>
-        	<div class="modal-body" id="modal-map-body"></div>
-        		<div id="modal-graph"></div>
-        		<div class="modal-footer">
+        	<div class="modal-body"  style="width:700px;" id="modal-map-body"></div>
+        		<div id="modal-graph"  style="width:600px; margin-left: 0px;" ></div>
+                <br>
+                <div id="weather-trend"  style="width:600px; margin-left: 0px;"></div>
+        		<div class="modal-footer"  style="width:700px;">
           			<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
         		</div>
       		</div>
@@ -37,8 +39,6 @@
 
 	<script src="{{ url_for('static', filename='javascriptNew.js') }}"></script>
 	<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA55VhjQyX8BeKEq7Przs3q7NU9RBLNBRg&callback=mapInit"></script>
-
-	</script>
 
 	<script src="{{ url_for('static', filename='dropdown.js') }}"></script>
 
