@@ -5,7 +5,8 @@ import os
 import sqlalchemy as sql
 import pandas as pd
 import datetime
-import pickle
+import json
+"""
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
@@ -26,6 +27,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.metrics import r2_score
 from sklearn.externals import joblib
+"""
 import pickle
 
 
@@ -45,21 +47,21 @@ def predictions(bike):
 	
 	#pull today's forecast
 	
+	
+	
 	predictions = {}
-	
-	predictions['predictions'] = {}
-	
-	
-	
 	#for each station...
 	
 	for a in range(1,103):
+		
+		
+	
 		
 		try:
 			
 			
 
-			predictions['predictions'][a] = []
+			predictions[a] = []
 			
 			#pull average bike data for that station aswell as weather forecast
 			
@@ -104,21 +106,16 @@ def predictions(bike):
 			
 			prediction = prediction.tolist()
 			
-			predictions['predictions'][a] = prediction
+			predictions[a] = prediction
 		
 		except:
 			print(a)
-			predictions['predictions'][a] = []
-			predictions['predictions'][a] = [0] * 24
+			predictions[a] = []
+			predictions[a] = [0] * 24
 			pass
 		
-	recent = extractorv1.Extractor()
-	recent = recent.getRecent()
-	
-	predictions['Recent'] = recent
-			
-			
-	return predictions
+	fh = open("static/predictions.json", 'w')
+	fh.write(json.dumps(predictions))
 
 	
 	
