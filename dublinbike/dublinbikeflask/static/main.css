@@ -143,12 +143,12 @@ body {
 }
 
 /* Google Graphs */
-#modal-graph {
+#modal-graph, #weather-tend {
 	width: 100%;
 	margin-left: auto;
 	margin-right: auto;
-	padding-left: calc((100% - 400px)/2);
-	padding-right: calc((100% - 400px)/2);
+	padding-left: calc((100% - 700px)/2);
+	padding-right: calc((100% - 700px)/2);
 	background-color: #fff;
 	display: inline-block;
 }
