@@ -81,6 +81,12 @@ function mapInit() {
         		
         		// Map modal.
 				$(document).ready(function(){
+				
+					$.getJSON($SCRIPT_ROOT + '/_predictions/1', function(data) {
+					
+						console.log(data);
+					});
+				
     				$("#mapBtn").click(function(){
         				$("#mapModal").modal();
         				$("#modal-map-head").html("<h2 id='modal-title' style='text-align:center;font-weight:bold'>"+index[x]+"</h2>");
