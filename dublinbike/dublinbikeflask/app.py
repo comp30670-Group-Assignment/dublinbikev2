@@ -134,10 +134,11 @@ def add_numbers():
 @app.route('/_predictions/<int:file_id>')
 def prediction_data(file_id):
 	predictionList = [];
-	file = "/static/predictions/test.json"
-	fileOpen  = file(file, "r");
+	filePred = "static/predictions/1.json"
+	fileOpen  = open(filePred, "r");
 	for line in fileOpen:
 		predictionList.append(line);
+	return jsonify(predictionList);
 
 @functools.lru_cache(maxsize=256)
 @app.route('/_drop_data')
