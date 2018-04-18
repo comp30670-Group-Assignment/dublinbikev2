@@ -94,35 +94,37 @@ function mapInit() {
 						function drawVisualisation() {
 						
 							$.getJSON($SCRIPT_ROOT + '/_predictions/' + file_num, function(data) {
-							
+			
 								var stationID = x + 1;
+
+								var dataParsed = JSON.parse(data[0]);
 								
 								var data = google.visualization.arrayToDataTable([
 								['Hour', 'Predictor'],
-								['00:00',  parseInt(data[stationID.toString()][0])],
-								['01:00',  parseInt(data[stationID.toString()][1])],
-								['02:00',  parseInt(data[stationID.toString()][2])],
-								['03:00',  parseInt(data[stationID.toString()][3])],
-								['04:00',  parseInt(data[stationID.toString()][4])],
-								['05:00',  parseInt(data[stationID.toString()][5])],
-								['06:00',  parseInt(data[stationID.toString()][6])],
-								['07:00',  parseInt(data[stationID.toString()][7])],
-								['08:00',  parseInt(data[stationID.toString()][8])],
-								['09:00',  parseInt(data[stationID.toString()][9])],
-								['10:00',  parseInt(data[stationID.toString()][10])],
-								['11:00',  parseInt(data[stationID.toString()][11])],
-								['12:00',  parseInt(data[stationID.toString()][12])],
-								['13:00',  parseInt(data[stationID.toString()][13])],
-								['14:00',  parseInt(data[stationID.toString()][14])],
-								['15:00',  parseInt(data[stationID.toString()][15])],
-								['16:00',  parseInt(data[stationID.toString()][16])],
-								['18:00',  parseInt(data[stationID.toString()][17])],
-								['19:00',  parseInt(data[stationID.toString()][18])],
-								['20:00',  parseInt(data[stationID.toString()][19])],
-								['21:00',  parseInt(data[stationID.toString()][20])],
-								['22:00',  parseInt(data[stationID.toString()][21])],
-								['23:00',  parseInt(data[stationID.toString()][22])],
-								['24:00',  parseInt(data[stationID.toString()][23])]
+								['00:00',  parseInt(dataParsed[stationID.toString()][0])],
+								['01:00',  parseInt(dataParsed[stationID.toString()][1])],
+								['02:00',  parseInt(dataParsed[stationID.toString()][2])],
+								['03:00',  parseInt(dataParsed[stationID.toString()][3])],
+								['04:00',  parseInt(dataParsed[stationID.toString()][4])],
+								['05:00',  parseInt(dataParsed[stationID.toString()][5])],
+								['06:00',  parseInt(dataParsed[stationID.toString()][6])],
+								['07:00',  parseInt(dataParsed[stationID.toString()][7])],
+								['08:00',  parseInt(dataParsed[stationID.toString()][8])],
+								['09:00',  parseInt(dataParsed[stationID.toString()][9])],
+								['10:00',  parseInt(dataParsed[stationID.toString()][10])],
+								['11:00',  parseInt(dataParsed[stationID.toString()][11])],
+								['12:00',  parseInt(dataParsed[stationID.toString()][12])],
+								['13:00',  parseInt(dataParsed[stationID.toString()][13])],
+								['14:00',  parseInt(dataParsed[stationID.toString()][14])],
+								['15:00',  parseInt(dataParsed[stationID.toString()][15])],
+								['16:00',  parseInt(dataParsed[stationID.toString()][16])],
+								['18:00',  parseInt(dataParsed[stationID.toString()][17])],
+								['19:00',  parseInt(dataParsed[stationID.toString()][18])],
+								['20:00',  parseInt(dataParsed[stationID.toString()][19])],
+								['21:00',  parseInt(dataParsed[stationID.toString()][20])],
+								['22:00',  parseInt(dataParsed[stationID.toString()][21])],
+								['23:00',  parseInt(dataParsed[stationID.toString()][22])],
+								['24:00',  parseInt(dataParsed[stationID.toString()][23])]
 								]);
 						
 								var options = {

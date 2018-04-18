@@ -140,7 +140,7 @@ def weather():
 @app.route('/_predictions/<int:file_id>')
 def prediction_data(file_id):
 	predictionList = [];
-	filePred = "static/predictions/1.json"
+	filePred = "static/predictions/%s.json" % file_id
 	fileOpen  = open(filePred, "r");
 	for line in fileOpen:
 		predictionList.append(line);
