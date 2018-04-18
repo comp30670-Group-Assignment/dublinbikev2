@@ -154,19 +154,18 @@ function mapInit() {
 			
 								var stationID = x + 1;
 
-								console.log(data);
-
-								var dataParsed = JSON.parse(data[0]);
+													
+								console.log(data[x])
 								
 								var data = google.visualization.arrayToDataTable([
 								['Hour', 'Predictor'],
-								['00:00',  parseInt(dataParsed[stationID.toString()][0])],
-								['01:00',  parseInt(dataParsed[stationID.toString()][1])],
-								['02:00',  parseInt(dataParsed[stationID.toString()][2])],
-								['03:00',  parseInt(dataParsed[stationID.toString()][3])],
-								['04:00',  parseInt(dataParsed[stationID.toString()][4])],
-								['05:00',  parseInt(dataParsed[stationID.toString()][5])],
-								['Sunday',  parseInt(dataParsed[stationID.toString()][23])]
+								['00:00',  parseInt(data[stationID.toString()][0])],
+								['01:00',  parseInt(data[stationID.toString()][1])],
+								['02:00',  parseInt(data[stationID.toString()][2])],
+								['03:00',  parseInt(data[stationID.toString()][3])],
+								['04:00',  parseInt(data[stationID.toString()][4])],
+								['05:00',  parseInt(data[stationID.toString()][5])],
+								['Sunday',  parseInt(data[stationID.toString()][23])]
 								]);
 						
 								var options = {
