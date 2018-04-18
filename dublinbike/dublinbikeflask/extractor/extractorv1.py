@@ -185,7 +185,7 @@ class Extractor:
         for j in unique_number:
             
             result[j[0]] = []
-            print(result)
+
             number = j[0]
             
             for i in days_of_week:
