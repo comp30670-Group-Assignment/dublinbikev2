@@ -9,12 +9,6 @@ import pickle
 from app import predictions
 import time
 
-<<<<<<< HEAD
-#while True:
-predictions("available_bike_stands")
-    
-    #time.sleep(24*60*60)
-=======
 while True:
     
     now = datetime.datetime.now()
@@ -27,4 +21,3 @@ while True:
         predictions("available_bike_stands")
     
         time.sleep((24*60*60) - 1)
->>>>>>> hugh
