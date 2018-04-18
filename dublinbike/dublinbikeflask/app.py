@@ -146,6 +146,11 @@ def prediction_data(file_id):
 		predictionList.append(line);
 	return jsonify(predictionList);
 
+@app.route('/_trends')
+def bike_trends():
+	trends = extractorv1.Extractor();
+	return jsonify(trends.getAverageDailyAvailability())
+
 @functools.lru_cache(maxsize=256)
 @app.route('/_drop_data')
 def dropdown():
