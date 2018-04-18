@@ -159,12 +159,12 @@ function mapInit() {
 								
 								var data = google.visualization.arrayToDataTable([
 								['Hour', 'Predictor'],
-								['00:00',  parseInt(data[stationID.toString()][0])],
-								['01:00',  parseInt(data[stationID.toString()][1])],
-								['02:00',  parseInt(data[stationID.toString()][2])],
-								['03:00',  parseInt(data[stationID.toString()][3])],
-								['04:00',  parseInt(data[stationID.toString()][4])],
-								['05:00',  parseInt(data[stationID.toString()][5])],
+								['Monday',  parseInt(data[stationID.toString()][0])],
+								['Tuesday',  parseInt(data[stationID.toString()][1])],
+								['Wednesday',  parseInt(data[stationID.toString()][2])],
+								['Thursday',  parseInt(data[stationID.toString()][3])],
+								['Friday',  parseInt(data[stationID.toString()][4])],
+								['Saturday',  parseInt(data[stationID.toString()][5])],
 								['Sunday',  parseInt(data[stationID.toString()][23])]
 								]);
 						
