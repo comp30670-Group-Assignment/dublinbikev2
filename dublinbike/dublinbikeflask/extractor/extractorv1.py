@@ -154,7 +154,7 @@ class Extractor:
         output = self.cursor.fetchall()
         
 
-        result[hour] = {}
+        result[0] = {}
         result[hour]['temp'] = float(output[0][1]) - 273
         result[hour]['pressure'] = float(output[0][5])
         result[hour]['description'] = output[0][4]
