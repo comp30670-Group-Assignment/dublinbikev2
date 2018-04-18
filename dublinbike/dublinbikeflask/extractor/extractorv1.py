@@ -159,7 +159,7 @@ class Extractor:
         result[0]['pressure'] = float(output[0][5])
         result[0]['description'] = output[0][4]
         result[0]['humidity'] = output[0][2]
-        result[0]['icon'] = output[0][6]
+        result[0]['icon'] = output[0][7]
         
         return result
     
