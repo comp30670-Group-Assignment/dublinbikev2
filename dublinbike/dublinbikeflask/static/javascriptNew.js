@@ -1,3 +1,4 @@
+
 // Hold marker data.
 var markerArray = [];
 var map;
@@ -82,34 +83,70 @@ function mapInit() {
         		// Map modal.
 				$(document).ready(function(){
     				$("#mapBtn").click(function(){
+    					
+    					file_num = x + 1;
+    						
+						// Load google charts
+						google.charts.load('current', {'packages':['corechart']});
+						google.charts.setOnLoadCallback(drawVisualisation);
+
+						// Draw the chart and set the chart values
+						function drawVisualisation() {
+						
+							$.getJSON($SCRIPT_ROOT + '/_predictions/' + file_num, function(data) {
+							
+								var stationID = x + 1;
+								
+								var data = google.visualization.arrayToDataTable([
+								['Hour', 'Predictor'],
+								['00:00',  parseInt(data[stationID.toString()][0])],
+								['01:00',  parseInt(data[stationID.toString()][1])],
+								['02:00',  parseInt(data[stationID.toString()][2])],
+								['03:00',  parseInt(data[stationID.toString()][3])],
+								['04:00',  parseInt(data[stationID.toString()][4])],
+								['05:00',  parseInt(data[stationID.toString()][5])],
+								['06:00',  parseInt(data[stationID.toString()][6])],
+								['07:00',  parseInt(data[stationID.toString()][7])],
+								['08:00',  parseInt(data[stationID.toString()][8])],
+								['09:00',  parseInt(data[stationID.toString()][9])],
+								['10:00',  parseInt(data[stationID.toString()][10])],
+								['11:00',  parseInt(data[stationID.toString()][11])],
+								['12:00',  parseInt(data[stationID.toString()][12])],
+								['13:00',  parseInt(data[stationID.toString()][13])],
+								['14:00',  parseInt(data[stationID.toString()][14])],
+								['15:00',  parseInt(data[stationID.toString()][15])],
+								['16:00',  parseInt(data[stationID.toString()][16])],
+								['18:00',  parseInt(data[stationID.toString()][17])],
+								['19:00',  parseInt(data[stationID.toString()][18])],
+								['20:00',  parseInt(data[stationID.toString()][19])],
+								['21:00',  parseInt(data[stationID.toString()][20])],
+								['22:00',  parseInt(data[stationID.toString()][21])],
+								['23:00',  parseInt(data[stationID.toString()][22])],
+								['24:00',  parseInt(data[stationID.toString()][23])]
+								]);
+						
+								var options = {
+								titleTextStyle: {bold: true},
+								title : 'Station Occupancy Prediction',
+								vAxis: {title: 'Bikes'},
+								hAxis: {title: '24 Hours'},
+								'width':650,
+								'height':400,
+								series: {2: {type: 'line'}}
+								};
+			
+								var chart = new google.visualization.ComboChart(document.getElementById('modal-graph'));
+								chart.draw(data, options);
+							
+							
+							});
+							
+						}
+    					
         				$("#mapModal").modal();
         				$("#modal-map-head").html("<h2 id='modal-title' style='text-align:center;font-weight:bold'>"+index[x]+"</h2>");
     				});
 				});
-				
-				// Load google charts
-				google.charts.load('current', {'packages':['corechart']});
-				google.charts.setOnLoadCallback(drawChart);
-
-				// Draw the chart and set the chart values
-				function drawChart() {
-  					var data = google.visualization.arrayToDataTable([
-  					['Task', 'Hours per Day'],
-  					['Work', 8],
-  					['Friends', 2],
-  					['Eat', 2],
-  					['TV', 3],
-  					['Gym', 2],
-  					['Sleep', 7]
-					]);
-				
-					// Optional; add a title and set the width and height of the chart
-  					var options = {'title':'My Average Day', 'width':400, 'height':300};
-
-  					// Display the chart inside the <div> element with id="piechart"
-  					var chart = new google.visualization.PieChart(document.getElementById('modal-graph'));
-  					chart.draw(data, options);
-				}
         		
 			});
 			
