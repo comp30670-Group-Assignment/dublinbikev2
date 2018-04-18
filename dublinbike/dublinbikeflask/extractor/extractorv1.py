@@ -155,10 +155,11 @@ class Extractor:
         
 
         result[0] = {}
-        result[hour]['temp'] = float(output[0][1]) - 273
-        result[hour]['pressure'] = float(output[0][5])
-        result[hour]['description'] = output[0][4]
-        result[hour]['humidity'] = output[0][2]
+        result[0]['temp'] = float(output[0][1]) - 273
+        result[0]['pressure'] = float(output[0][5])
+        result[0]['description'] = output[0][4]
+        result[0]['humidity'] = output[0][2]
+        result[0]['icon'] = output[0][6]
         
         return result
     
