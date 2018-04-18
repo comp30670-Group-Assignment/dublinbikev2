@@ -1,5 +1,5 @@
 from flask import Flask, render_template, jsonify
-from extractor import extractorv1
+from dublinbikeflask.extractor import extractorv1
 import functools
 import os
 import sqlalchemy as sql
@@ -145,6 +145,11 @@ def prediction_data(file_id):
 	for line in fileOpen:
 		predictionList.append(line);
 	return jsonify(predictionList);
+
+@app.route('/_trends')
+def bike_trends():
+	trends = extractorv1.Extractor();
+	return jsonify(trends.getAverageDailyAvailability())
 
 @functools.lru_cache(maxsize=256)
 @app.route('/_drop_data')

@@ -137,13 +137,56 @@ function mapInit() {
 								series: {2: {type: 'line'}}
 								};
 			
-								var chart = new google.visualization.ComboChart(document.getElementById('modal-graph'));
+								var chart = new google.visualization.ComboChart(document.getElementById('modal-graph-1'));
 								chart.draw(data, options);
 							
 							
 							});
 							
 						}
+						
+						google.charts.setOnLoadCallback(drawVisualisation2);
+
+						// Draw the chart and set the chart values
+						function drawVisualisation2() {
+						
+							$.getJSON($SCRIPT_ROOT + '/_trends', function(data) {
+			
+								var stationID = x + 1;
+
+								console.log(data);
+
+								var dataParsed = JSON.parse(data[0]);
+								
+								var data = google.visualization.arrayToDataTable([
+								['Hour', 'Predictor'],
+								['00:00',  parseInt(dataParsed[stationID.toString()][0])],
+								['01:00',  parseInt(dataParsed[stationID.toString()][1])],
+								['02:00',  parseInt(dataParsed[stationID.toString()][2])],
+								['03:00',  parseInt(dataParsed[stationID.toString()][3])],
+								['04:00',  parseInt(dataParsed[stationID.toString()][4])],
+								['05:00',  parseInt(dataParsed[stationID.toString()][5])],
+								['Sunday',  parseInt(dataParsed[stationID.toString()][23])]
+								]);
+						
+								var options = {
+								titleTextStyle: {bold: true},
+								title : 'Occupancy Trends',
+								vAxis: {title: 'Bikes'},
+								hAxis: {title: 'Days of Week'},
+								'width':650,
+								'height':400,
+								series: {2: {type: 'line'}}
+								};
+			
+								var chart = new google.visualization.ComboChart(document.getElementById('modal-graph-2'));
+								chart.draw(data, options);
+							
+							
+							});
+							
+						}
+    					
     					
         				$("#mapModal").modal();
         				$("#modal-map-head").html("<h2 id='modal-title' style='text-align:center;font-weight:bold'>"+index[x]+"</h2>");
