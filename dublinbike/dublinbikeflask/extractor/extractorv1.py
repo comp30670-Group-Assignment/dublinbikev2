@@ -142,23 +142,23 @@ class Extractor:
         
         now = datetime.datetime.now()
         
-        day = now.day + 1
+        hour = now.hour
+        day = now.day
         month = now.month
         
-        query = 'select * from weatherForecast WHERE DAY(FROM_UNIXTIME(dt)) = %d AND MONTH(FROM_UNIXTIME(dt)) = %d' % (day, month)
+        remainder = hour % 3
+        
+        query = 'select * from weatherForecast WHERE DAY(FROM_UNIXTIME(dt)) = %d AND MONTH(FROM_UNIXTIME(dt)) = %d AND (HOUR(FROM_UNIXTIME(dt)) >= (%d) AND HOUR(FROM_UNIXTIME(dt)) <= %d)' % (day, month, (hour - remainder), (hour + 1))
         
         self.cursor.execute(query)
         output = self.cursor.fetchall()
-    
-        for row in output:
+        
 
-            hour = row[6]
-            result[hour] = {}
-            result[hour]['temp'] = float(row[1]) - 273
-            result[hour]['pressure'] = float(row[5])
-            result[hour]['description'] = row[4]
-            result[hour]['humidity'] = row[2]
-    
+        result[hour] = {}
+        result[hour]['temp'] = float(output[0][1]) - 273
+        result[hour]['pressure'] = float(output[0][5])
+        result[hour]['description'] = output[0][4]
+        result[hour]['humidity'] = output[0][2]
         
         return result
     
@@ -202,7 +202,7 @@ class Extractor:
             
         
         return result           
-        
+
     def closeConex(self):
         
         self.conex.close()
