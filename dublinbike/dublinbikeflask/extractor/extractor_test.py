@@ -4,7 +4,7 @@ import json
 
 new_conex = Extractor()
 
-output = new_conex.getWeather()
+output = new_conex.getAverageDailyAvailability()
 
 print(output)
 
