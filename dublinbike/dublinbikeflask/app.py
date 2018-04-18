@@ -131,7 +131,7 @@ def add_numbers():
 	recent = extractorv1.Extractor();
 	return jsonify(recent.getRecent());
 
-<<<<<<< HEAD
+
 @app.route('/_weather')
 def weather():
 	weather = extractorv1.Extractor();
@@ -145,7 +145,7 @@ def prediction_data(file_id):
 	for line in fileOpen:
 		predictionList.append(line);
 	return jsonify(predictionList);
-=======
+
 @app.route('/_predictions/<int:file_id>')
 def prediction_data(file_id):
 	predictionList = [];
@@ -153,7 +153,7 @@ def prediction_data(file_id):
 	fileOpen  = file(file, "r");
 	for line in fileOpen:
 		predictionList.append(line);
->>>>>>> tim1
+
 
 @functools.lru_cache(maxsize=256)
 @app.route('/_drop_data')
