@@ -1,3 +1,4 @@
+<script src="{{ url_for('static', filename='navbar.js') }}"></script>    
 <nav class="navbar navbar-inverse" id="navCustom">
   <div class="container-fluid">
     <div class="navbar-header">
@@ -25,9 +26,10 @@
       	</li>
       	
       	 <li id="right-block-1">
+             
+             
       	 <div id="weather-block">
-             <div id="leftie" style="padding: 2px; display: block; font-family: tahoma; margin-top: 9%; margin-left: 40px; float: left;"> <b>DUBLIN</b><br>Weather</div><div id="center" style="padding: 2px; float: left; margin-top: 5%; margin-left: 50px; width:75px;"><img src="/static/icon_16.png" width="100%"></div><div id="rightie-top" style="background-color: white; width:70px; height:40px; padding: 2px; float: left; margin-top: 6%; font-family: tahoma; font-size:30px; margin-left: 40px;">13°C</div><div id="rightie-bottom" style="background-color: white; width:100px; height:20px; padding: 2px; float: left; margin-top: 0%; margin-left: 10px; font-family: tahoma; font-size:12px; margin-left: 35px;">Description...</div><!--
-        	<a class="weatherwidget-io" href="https://forecast7.com/en/53d35n6d26/dublin/" data-label_1="DUBLIN" data-label_2="WEATHER" data-mode="Current" data-theme="pure" data-basecolor="#ffffff" >DUBLIN WEATHER</a>-->
+             <div id="leftie" style="padding: 2px; display: block; font-family: tahoma; margin-top: 9%; margin-left: 40px; float: left;"> <b>DUBLIN</b><br>Weather</div><div id="center" style="padding: 2px; float: left; margin-top: 5%; margin-left: 50px; width:75px;"><img  id = "image" src="/static/icon_16.png" width="100%"></div><div id="rightie-top" style="background-color: white; width:70px; height:40px; padding: 2px; float: left; margin-top: 6%; font-family: tahoma; font-size:30px; margin-left: 40px;">13°C</div><div id="rightie-bottom" style="background-color: white; width:100px; height:20px; padding: 2px; float: left; margin-top: 0%; margin-left: 10px; font-family: tahoma; font-size:12px; margin-left: 35px;">Description...</div>
          </div>
 
          </li>

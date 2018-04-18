@@ -131,6 +131,11 @@ def add_numbers():
 	recent = extractorv1.Extractor();
 	return jsonify(recent.getRecent());
 
+@app.route('/_weather')
+def weather():
+	weather = extractorv1.Extractor();
+	return jsonify(weather.getWeather())
+
 @app.route('/_predictions/<int:file_id>')
 def prediction_data(file_id):
 	predictionList = [];
