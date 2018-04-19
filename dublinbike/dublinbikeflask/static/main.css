@@ -43,7 +43,7 @@ body {
 }
 
 .dropbtn {
-    background-color: #e9ecef;
+    background-color: #bbbbbb;
     color: white;
     padding: 16px;
     font-size: 16px;
@@ -55,7 +55,7 @@ body {
 }
 
 .dropbtn:hover, .dropbtn:focus {
-    background-color: #bbbbbb;
+    background-color: #e9ecef;
 }
 
 #myInput {
@@ -153,10 +153,12 @@ body {
 
 /* Footer */
 #footer-box {
+position: absolute;
+bottom:0;
     width: 100%;
     margin-left: auto;
     margin-right: auto;
-    margin-top: 2em;
+    //margin-top: 700px;
     background-color: #fff;
 }
 
@@ -178,18 +180,18 @@ body {
     text-align: center;}
 
 #legend{
-    //width: 125px; 
-    //height: auto;
-    //border-radius: 5px;
+    width: 125px; 
+    height: auto;
+    border-radius: 5px;
     font-size: 10px;
     font-family: arial;
-    //background-color: #ffffff;
-    //margin-top: -545px;
-    //margin-left: 10px;
+    background-color: #ffffff;
+    margin-top: -545px;
+    margin-left: 10px;
     z-index: 99 !important;
-    //position: relative;
-    //border: 1px solid #d4d4d4;
-    //padding: 5px;
+    position: relative;
+    border: 1px solid #d4d4d4;
+    padding: 5px;
 }
 
 #googleMap{
@@ -236,11 +238,11 @@ body {
 #rightie-bottom{
     width:100px;
     height:20px;
-    padding: 2px;
+    padding-bottom: 4px;
     float: left; 
     margin-top: 0%;
-    margin-left: 10px;
-    font-family: tahoma; 
+    margin-left: 15px;
+    font-family: Arial; 
     font-size:12px; 
     margin-left: 35px;
 }

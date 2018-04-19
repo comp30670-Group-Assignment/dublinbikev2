@@ -1,7 +1,5 @@
 $.getJSON($SCRIPT_ROOT + '/_weather', function(data){
     
-    console.log(data);
-    
     $(document).ready(function(){
         $("#rightie-top").text(Math.round(data["0"]["temp"])+ '°C')
         $("#rightie-bottom").text(data["0"]["description"])
