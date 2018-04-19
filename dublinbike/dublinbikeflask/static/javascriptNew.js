@@ -170,7 +170,7 @@ function mapInit() {
 						
 								var options = {
 								titleTextStyle: {bold: true},
-								title : 'Occupancy Trends',
+								title : 'Daily Availability',
 								vAxis: {title: 'Bikes'},
 								hAxis: {title: 'Days of Week'},
 								'width':650,

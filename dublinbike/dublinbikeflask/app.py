@@ -1,3 +1,9 @@
+"""
+Authors:
+Hugh O'Brien
+Tim Madigan
+Aalasa Fidler
+"""
 from flask import Flask, render_template, jsonify
 from extractor import extractorv1
 import functools
